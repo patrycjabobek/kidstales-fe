@@ -1,0 +1,5 @@
+.footer-container {
+    width: calc(100vw - (100vw - 100%));
+    background: #0C2C80;overflow: hidden;
+    position: absolute;left: 0;
+}

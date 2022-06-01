@@ -1,0 +1,24 @@
+* {
+  box-sizing: border-box;
+}
+html {
+  background: #A4ADFE;
+  position: relative;
+  min-height: 100%;
+}
+body {
+  margin: 0 auto;
+  font-family: 'Overpass', sans-serif;
+  width: 1200px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+label {
+  color: #fff;
+}
