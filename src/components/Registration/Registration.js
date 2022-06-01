@@ -1,9 +1,9 @@
-import React, {  useState } from 'react'
+import React, {  useState, useContext } from 'react'
 import {Wrapper} from "../../styledHelpers/Components";
 import {Link, useNavigate} from "react-router-dom";
-import {useAuth} from "../../contexts/AuthContext";
-import { onAuthStateChanged } from "firebase/auth";
-import {auth, createAuthUserWithEmailANdPassword, createUserDocumentFromAuth} from "../../utils/firebase/firebase.utils";
+
+import {createAuthUserWithEmailANdPassword, createUserDocumentFromAuth} from "../../utils/firebase/firebase.utils";
+
 
 const defaultFormFields = {
     displayName: '',
@@ -17,7 +17,6 @@ export default function Registration() {
     const [formFields, setFormFields] = useState(defaultFormFields);
     const {displayName, email, password, confirmPassword, identity} = formFields;
 
-
     const resetFormFields = () => {
         setFormFields(defaultFormFields);
     }
@@ -26,15 +25,10 @@ export default function Registration() {
         setFormFields({...formFields, [name]: value});
     }
 
-    const [user, setUser] = useState({});
-    const { signup } = useAuth();
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState('');
     const navigate = useNavigate();
 
-    onAuthStateChanged(auth, (currentUser) => {
-        setUser(currentUser);
-    });
 
     async function handleSubmit(e) {
         e.preventDefault();
@@ -47,10 +41,10 @@ export default function Registration() {
         try {
             setError('');
             setLoading(true);
-            const res = await createAuthUserWithEmailANdPassword(email, password);
+            const {user} = await createAuthUserWithEmailANdPassword(email, password);
+
 
             await createUserDocumentFromAuth(user, {displayName, identity});
-            console.log(res)
             resetFormFields();
             navigate('/login');
         } catch(e) {

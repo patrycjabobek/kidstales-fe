@@ -1,11 +1,15 @@
-import React from 'react'
+import React, {useContext} from 'react'
 import styled from 'styled-components';
 import { StyledLink } from '../../styledHelpers/Components';
 import { fontSize } from '../../styledHelpers/FontSizes';
 import { Colors } from '../../styledHelpers/Colors';
 import OvalButton from "../Buttons/OvalButton";
-import './navBar.css';
 import {Link} from "react-router-dom";
+
+import './navBar.css';
+
+import {UserContext} from "../../contexts/UserContext";
+import { signOutUser } from '../../utils/firebase/firebase.utils'
 
 const Nav = styled.ul`
   list-style: none;
@@ -36,8 +40,11 @@ const DropdownContent = styled.div`
   z-index: 1;
 `;
 export default function NavBar(props) {
+    const { currentUser } = useContext(UserContext);
+    // console.log({currentUser})
 
-    if (props.isLoggedIn && props.isParent) {
+
+    if (currentUser ) {
         return (
             <Nav>
                 <NavItem><StyledLink to="/parent-zone">Dla dziecka</StyledLink></NavItem>
@@ -57,12 +64,12 @@ export default function NavBar(props) {
                         <DropdownContent className={'dropdown-content'}>
                             <Link to="/profile">Profil</Link>
                             <Link to="/settings">Ustawienia</Link>
-                            <Link to="/logout">Wyloguj się</Link>
+                            <span onClick={signOutUser}>Wyloguj się</span>
                         </DropdownContent>
                     </Dropdown>
                 </NavItem>
             </Nav>)
-    } else if (props.isLoggedIn && !props.isParent) {
+    } else if (currentUser ) {
         return (
             <Nav>
                 <NavItem><StyledLink to="/author-zone">Dla autora</StyledLink></NavItem>
@@ -82,7 +89,7 @@ export default function NavBar(props) {
                         <DropdownContent className={'dropdown-content'}>
                             <Link to="/profile">Profil</Link>
                             <Link to="/settings">Ustawienia</Link>
-                            <Link to="/logout">Wyloguj się</Link>
+                            <span onClick={signOutUser}>Wyloguj się</span>
                         </DropdownContent>
                     </Dropdown>
                 </NavItem>

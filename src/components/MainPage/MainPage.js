@@ -1,16 +1,16 @@
-import React from 'react'
+import React, {useContext} from 'react'
 import Card from "./Card";
 import './mainPage.css';
 import OvalButton from "../Buttons/OvalButton";
 import parentsReadingImage from '../../assets/images/parents-reading-book.png';
 import {Dot, MainTitle} from '../../styledHelpers/Components'
 import {Link} from "react-router-dom";
+import {UserContext} from "../../contexts/UserContext";
 
-export default function MainPage(props) {
+export default function MainPage() {
+    const { currentUser } = useContext(UserContext);
 
-    // const cards = [props.cards];
-
-    if (props.isLoggedIn && props.isParent) {
+    if (currentUser) {
         return (
             <div className={'mainPage-container-logged'}>
                 <MainTitle >Witaj w Strefie Dziecka</MainTitle>
@@ -22,7 +22,7 @@ export default function MainPage(props) {
                 </div>
             </div>
         )
-    } else if (props.isLoggedIn && !props.isParent) {
+    } else if (currentUser) {
         return (
             <div className={'mainPage-container-logged'}>
                 <MainTitle >Witaj w Strefie Twórcy</MainTitle>

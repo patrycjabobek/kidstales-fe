@@ -1,19 +1,16 @@
-import React, { useRef, useState } from 'react'
+import React, {  useState, useContext } from 'react'
 import {Link, useNavigate} from 'react-router-dom';
-import { useAuth } from '../../contexts/AuthContext';
-import FacebookLogin from 'react-facebook-login';
-// import FacebookLogin from 'react-facebook-login/dist/facebook-login-render-props'
-import GoogleLogin from 'react-google-login';
-import './login.css'
+
 import { MainTitle, Wrapper} from '../../styledHelpers/Components'
 import OvalButton from "../Buttons/OvalButton";
-import {signInWithEmailAndPassword} from "firebase/auth";
-// import { auth } from "./firebase-config";
-import {auth,
+
+import './login.css'
+
+import {
     signInWithGooglePopup,
     createUserDocumentFromAuth,
     signInAuthUserWithEmailAndPassword
-} from "../../utils/Firebase/firebase.utils";
+} from "../../utils/firebase/firebase.utils";
 
 const customGoogleStyle = {
     padding: '10px',
@@ -41,14 +38,14 @@ export default function Login() {
     const [loading, setLoading] = useState(false);
     const navigate = useNavigate();
 
+
     const resetFormFields = () => {
         setFormFields(defaultFormFields);
     };
 
     const logGoogleUser = async () => {
         const {user} = await signInWithGooglePopup();
-        const userDocRef = await createUserDocumentFromAuth(user);
-        console.log(userDocRef)
+        navigate('/');
     }
 
     async function handleSubmit(e) {
@@ -57,10 +54,9 @@ export default function Login() {
         try {
             setError('')
             setLoading(true)
-            const res = await signInAuthUserWithEmailAndPassword(email, password);
-            console.log(res);
+            const {user} = await signInAuthUserWithEmailAndPassword(email, password);
             resetFormFields();
-            // navigate('/dashboard')
+            navigate('/')
         } catch (er){
             if (er.code === "auth/wrong-password"){
                 setError('Błędne hasło')
