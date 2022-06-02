@@ -1,9 +1,11 @@
-import React, {useRef, useState} from 'react'
+import React, {useState} from 'react'
 import styled from 'styled-components';
 import {Wrapper} from "../../styledHelpers/Components";
 import {Colors} from "../../styledHelpers/Colors";
 import {fontSize} from "../../styledHelpers/FontSizes";
 import './passwordReset.css';
+import {sendUserPasswordResetEmail} from "../../utils/firebase/firebase.utils";
+import {useNavigate, useParams} from "react-router-dom";
 
 const StyledWrapper = styled(Wrapper)`
   background-color: ${Colors.scampiBlue};
@@ -26,22 +28,38 @@ const StyledLabel = styled.label`
   color: ${Colors.white};
 `;
 
+const defaultEmailFields = {
+    email: ''
+};
 
-export default function PasswordReset() {
-    const emailRef = useRef();
+export default function PasswordReset({navigation}) {
+    const [emailField, setEmailField] = useState(defaultEmailFields);
+    const { email } = emailField;
     const [loading, setLoading] = useState(false);
+    const navigate = useNavigate();
+
+    const resetFormFields = () => {
+        setEmailField(defaultEmailFields);
+    };
+
+    const handleChange = (ev) => {
+        const { name,value } = ev.target;
+        setEmailField({...defaultEmailFields, [name]: value});
+    }
+
     async function handleSubmit(e) {
         e.preventDefault();
 
-        // try {
-        //     setError('')
-        //     setLoading(true)
-        //     await login(emailRef.current.value, passwordRef.current.value)
-        //     navigate.push('/dashboard')
-        // } catch {
-        //     setError('Failed to sign in')
-        // }
-        // setLoading(false)
+        try {
+            setLoading(true)
+            await sendUserPasswordResetEmail(email);
+            console.log('wysłanoe email')
+            navigate("/password-reset-confirmation", {state: {email: emailField}});
+            console.log('sukces');
+        } catch  {
+            console.log("BŁĄD")
+        }
+        setLoading(false)
     }
 
     return (
@@ -51,7 +69,12 @@ export default function PasswordReset() {
                 <form onSubmit={handleSubmit}>
                     <div className="form-group">
                         <StyledLabel htmlFor="email">Email</StyledLabel>
-                        <input type="email" id="email" ref={emailRef} required/>
+                        <input type="email"
+                               id="email"
+                               name='email'
+                               value={email}
+                               onChange={handleChange}
+                        required/>
                     </div>
                     <button disabled={loading}
                             type="submit"

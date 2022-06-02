@@ -1,8 +1,11 @@
-import React, {  useState, useContext } from 'react'
+import React, {  useState } from 'react'
 import {Wrapper} from "../../styledHelpers/Components";
 import {Link, useNavigate} from "react-router-dom";
 
-import {createAuthUserWithEmailANdPassword, createUserDocumentFromAuth} from "../../utils/firebase/firebase.utils";
+import {
+    createAuthUserWithEmailANdPassword,
+    createUserDocumentFromAuth,
+} from "../../utils/firebase/firebase.utils";
 
 
 const defaultFormFields = {
@@ -45,8 +48,9 @@ export default function Registration() {
 
 
             await createUserDocumentFromAuth(user, {displayName, identity});
+
             resetFormFields();
-            navigate('/login');
+            navigate('/');
         } catch(e) {
             if (e.code === "auth/email-already-in-use") {
                 setError("Ten email jest już zarejestrowany");

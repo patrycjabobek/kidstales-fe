@@ -6,10 +6,11 @@ import MainPage from "./components/MainPage/MainPage";
 import Registration from './components/Registration/Registration';
 import Login from './components/Login/Login';
 import PasswordReset from "./components/PasswordReset/PasswordReset";
-import AccountActivation from "./components/Registration/AccountActivation";
+import AccountActivation from "./components/PasswordReset/PasswordResetConfirmation";
 import Contact from "./components/Contact/Contact";
 import NotFound from "./components/NotFound/NotFound";
 import Listing from "./components/Listing/Listing";
+import PasswordResetConfirmation from "./components/PasswordReset/PasswordResetConfirmation";
 
 // Test
 
@@ -31,7 +32,7 @@ function App() {
                   <Route path="/register" element={<Registration />} />
                   <Route path="/login" element={<Login />} />
                   <Route path="/password-reset" element={<PasswordReset />} />
-                  <Route path="/account-activation" element={<AccountActivation />} />
+                  <Route path="/password-reset-confirmation" element={<PasswordResetConfirmation />} />
                   <Route path="/contact" element={<Contact />} />
                   <Route path="listing/:type" element={<Listing/>}/>
                   <Route path="/*" element={<NotFound />} />

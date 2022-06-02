@@ -4,7 +4,7 @@ import { StyledLink } from '../../styledHelpers/Components';
 import { fontSize } from '../../styledHelpers/FontSizes';
 import { Colors } from '../../styledHelpers/Colors';
 import OvalButton from "../Buttons/OvalButton";
-import {Link} from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
 
 import './navBar.css';
 
@@ -39,10 +39,16 @@ const DropdownContent = styled.div`
   border-radius: 0 0 10px 10px;
   z-index: 1;
 `;
-export default function NavBar(props) {
+export default function NavBar() {
     const { currentUser } = useContext(UserContext);
-    // console.log({currentUser})
+    const navigate = useNavigate();
 
+
+    // console.log(currentUser.data);
+    async function handleSignOut() {
+        await signOutUser();
+        navigate('/login');
+    }
 
     if (currentUser ) {
         return (
@@ -64,7 +70,7 @@ export default function NavBar(props) {
                         <DropdownContent className={'dropdown-content'}>
                             <Link to="/profile">Profil</Link>
                             <Link to="/settings">Ustawienia</Link>
-                            <span onClick={signOutUser}>Wyloguj się</span>
+                            <span onClick={handleSignOut}>Wyloguj się</span>
                         </DropdownContent>
                     </Dropdown>
                 </NavItem>
@@ -89,7 +95,7 @@ export default function NavBar(props) {
                         <DropdownContent className={'dropdown-content'}>
                             <Link to="/profile">Profil</Link>
                             <Link to="/settings">Ustawienia</Link>
-                            <span onClick={signOutUser}>Wyloguj się</span>
+                            <span onClick={handleSignOut}>Wyloguj się</span>
                         </DropdownContent>
                     </Dropdown>
                 </NavItem>
