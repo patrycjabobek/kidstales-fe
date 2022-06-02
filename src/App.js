@@ -6,11 +6,11 @@ import MainPage from "./components/MainPage/MainPage";
 import Registration from './components/Registration/Registration';
 import Login from './components/Login/Login';
 import PasswordReset from "./components/PasswordReset/PasswordReset";
-import AccountActivation from "./components/PasswordReset/PasswordResetConfirmation";
 import Contact from "./components/Contact/Contact";
 import NotFound from "./components/NotFound/NotFound";
 import Listing from "./components/Listing/Listing";
 import PasswordResetConfirmation from "./components/PasswordReset/PasswordResetConfirmation";
+import {MaterialCard} from "./components/MaterialCard/MaterialCard";
 
 // Test
 
@@ -34,8 +34,9 @@ function App() {
                   <Route path="/password-reset" element={<PasswordReset />} />
                   <Route path="/password-reset-confirmation" element={<PasswordResetConfirmation />} />
                   <Route path="/contact" element={<Contact />} />
-                  <Route path="listing/:type" element={<Listing/>}/>
+                  <Route path="listing" element={<Listing/>}/>
                   <Route path="/*" element={<NotFound />} />
+                  <Route path="/listing/:id" element={<MaterialCard />} />
 
                   {/*<Navigate to="/404" />*/}
                   {/*<Route path="/parent-zone" element={<ParentDashboard />} />*/}

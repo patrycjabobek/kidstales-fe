@@ -1,10 +1,11 @@
-import React from 'react'
+import React, {useContext} from 'react'
 import styled from 'styled-components';
 import './footer.css'
 import { StyledLink, Line } from '../../styledHelpers/Components'
 import Logo from '../Logo/Logo'
 import { Colors } from '../../styledHelpers/Colors';
 import OvalButton from '../Buttons/OvalButton';
+import {UserContext} from "../../contexts/UserContext";
 
 const StyledFooter = styled.footer`
   background: ${Colors.catalinaBlue};
@@ -19,6 +20,8 @@ const StyledFooter = styled.footer`
   grid-row-gap: 0;
 `;
 export default function Footer() {
+    const { currentUser } = useContext(UserContext);
+
     return (
         <StyledFooter>
             <Logo color={'#fff'}
@@ -46,26 +49,28 @@ export default function Footer() {
                     <li><StyledLink to="/history">Historia</StyledLink></li>
                 </ul>
             </div>
-            <div className={'div4'}>
-                <OvalButton
-                    backgroundColor={'#fff'}
-                    color={'#4753BC'}
-                    borderRadius={'20px'}
-                    padding={'7px 0'}
-                    margin={'0 0 7px 0'}
-                    width={'100%'}
-                    url={'/register'}
-                    content={'Zarejestruj'}></OvalButton>
-                <OvalButton
-                    backgroundColor={'#4753BC'}
-                    color={'#fff'}
-                    borderRadius={'20px'}
-                    padding={'7px 0'}
-                    margin={'7px 0 0 0'}
-                    width={'100%'}
-                    url={'/login'}
-                    content={'Zaloguj'}></OvalButton>
-            </div>
+            {!currentUser &&
+                <div className={'div4'}>
+                    <OvalButton
+                        backgroundColor={'#fff'}
+                        color={'#4753BC'}
+                        borderRadius={'20px'}
+                        padding={'7px 0'}
+                        margin={'0 0 7px 0'}
+                        width={'100%'}
+                        url={'/register'}
+                        content={'Zarejestruj'}></OvalButton>
+                    <OvalButton
+                        backgroundColor={'#4753BC'}
+                        color={'#fff'}
+                        borderRadius={'20px'}
+                        padding={'7px 0'}
+                        margin={'7px 0 0 0'}
+                        width={'100%'}
+                        url={'/login'}
+                        content={'Zaloguj'}></OvalButton>
+                </div>
+            }
             <Line className={'div5'}/>
             <div className={'div6'}>
                 &copy; KidTales 2022
