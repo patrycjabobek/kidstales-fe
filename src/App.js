@@ -11,6 +11,7 @@ import NotFound from "./components/NotFound/NotFound";
 import Listing from "./components/Listing/Listing";
 import PasswordResetConfirmation from "./components/PasswordReset/PasswordResetConfirmation";
 import {MaterialCard} from "./components/MaterialCard/MaterialCard";
+import {UserProfile} from "./components/UserProfile/UserProfile";
 
 // Test
 
@@ -37,6 +38,7 @@ function App() {
                   <Route path="listing" element={<Listing/>}/>
                   <Route path="/*" element={<NotFound />} />
                   <Route path="/listing/:id" element={<MaterialCard />} />
+                  <Route path="/profile" element={<UserProfile />} />
 
                   {/*<Navigate to="/404" />*/}
                   {/*<Route path="/parent-zone" element={<ParentDashboard />} />*/}

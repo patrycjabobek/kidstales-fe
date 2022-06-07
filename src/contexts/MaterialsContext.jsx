@@ -3,26 +3,31 @@ import {createUserDocumentFromAuth, onAuthStateChangedListener} from '../utils/f
 
 import MATERIALS from '../materias-data.json';
 
+const saveMaterialForUser = (savedMaterials, materialToAdd) => {
+    const existingMaterial = savedMaterials.find((materialItem) => materialItem.id === materialToAdd.id);
+
+    if (existingMaterial) return;
+
+    console.log(materialToAdd)
+    return [...savedMaterials, {...materialToAdd}];
+
+}
+
 export const MaterialsContext = createContext({
     materials: [],
-
+    savedMaterials: [],
+    saveMaterial: () => {},
 });
 
 export const MaterialsProvider = ({children}) => {
     const [materials, setMaterials] = useState(MATERIALS);
-    const value = {materials, setMaterials};
+    const [savedMaterials, setSavedMaterials] = useState([]);
 
+    const saveMaterial = (materialToSave) => {
+        setSavedMaterials(saveMaterialForUser(savedMaterials, materialToSave));
+    }
 
-    // useEffect(() => {
-    //     const unsub = onAuthStateChangedListener((user) => {
-    //         console.log(user);
-    //         if (user) {
-    //             createUserDocumentFromAuth(user);
-    //         }
-    //         setCurrentUser(user);
-    //     });
-    //
-    //     return unsub;
-    // }, [])
+    const value = {materials, setMaterials, saveMaterial, savedMaterials};
+
     return <MaterialsContext.Provider value={value}>{children}</MaterialsContext.Provider>
 }

@@ -5,18 +5,21 @@ import {MaterialsContext} from "../../contexts/MaterialsContext";
 import './materialCard.css'
 
 
-export function MaterialCard(props) {
+export function MaterialCard() {
+    const { materials, saveMaterial, savedMaterials } = useContext(MaterialsContext);
     const location = useLocation()
-    const { materials } = useContext(MaterialsContext);
-    // console.log(materials)
-    console.log(materials[0])
     let {id} = useParams();
+    const previousMaterial = materials[id-1];
+    const material = materials[id];
+    const {title, author, description, price, imgUrl} = previousMaterial;
 
-    const material = materials[id-1];
+    const saveMaterialForUser = () => {
 
-    console.log(id)
-    console.log(material)
-    const {title, author, description, price, imgUrl} = material;
+        saveMaterial(material);
+        console.log('SAVED')
+        console.log(savedMaterials)
+    }
+
 
     return (
         <Fragment key={id}>
@@ -38,7 +41,7 @@ export function MaterialCard(props) {
                         <h2 className="price">{price} zł</h2>
                         <div className="button-box">
                             <button>ZOBACZ</button>
-                            <button>KUP</button>
+                            <button onClick={saveMaterialForUser}>KUP</button>
                         </div>
                     </div>
 

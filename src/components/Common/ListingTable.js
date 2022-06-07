@@ -7,7 +7,7 @@ import ListingItem from './ListingItem'
 import {MaterialsContext} from '../../contexts/MaterialsContext'
 
 
-export default function ListingTable(props) {
+export default function ListingTable() {
     const { materials } = useContext(MaterialsContext);
 
     return (
