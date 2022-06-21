@@ -1,12 +1,11 @@
 import React from 'react'
 import styled from 'styled-components';
-import Logo from "../Logo/Logo";
-import NavBar from "../Navigation/NavBar";
-import ListingTable from "../Common/ListingTable";
-import {useParams} from 'react-router-dom';
+import ListingTable from "./ListingTable";
+import {Routes, Route} from 'react-router-dom';
 
 const  ListingContainer = styled.div`
   background: white;
+  padding: 20px 40px;
 `;
 
 export default function Listing(props) {
@@ -24,11 +23,6 @@ export default function Listing(props) {
     // }
     return (
         <ListingContainer>
-            <div>
-                {/*<h3>{listingTitle}</h3>*/}
-                <h3>Materiały</h3>
-                {/*{renderDescription()}*/}
-            </div>
             <ListingTable></ListingTable>
         </ListingContainer>
     )

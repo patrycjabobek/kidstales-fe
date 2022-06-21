@@ -1,15 +1,16 @@
 import React, {Fragment, useContext} from "react";
 import {useLocation, useParams} from "react-router-dom";
-import {MaterialsContext} from "../../contexts/MaterialsContext";
+import {CategoriesContext} from "../../contexts/CategoriesContext";
 
-import './materialCard.css'
+import './material-card.module.css'
 
 
 export function MaterialCard() {
-    const { materials, saveMaterial, savedMaterials } = useContext(MaterialsContext);
+    const { materials, saveMaterial, savedMaterials } = useContext(CategoriesContext);
     const location = useLocation()
-    let {id} = useParams();
+    let {category, id} = useParams();
     const previousMaterial = materials[id-1];
+
     const material = materials[id];
     const {title, author, description, price, imgUrl} = previousMaterial;
 

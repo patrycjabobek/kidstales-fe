@@ -1,13 +1,13 @@
 import React, {Fragment, useContext} from 'react';
 
-import {MaterialsContext} from "../../contexts/MaterialsContext";
+import {CategoriesContext} from "../../contexts/CategoriesContext";
 
 import MaterialsItem from "./MaterialsItem";
 
 import './materials-table.style.css'
 
 export default function MaterialsTable() {
-    const { savedMaterials } = useContext(MaterialsContext);
+    const { savedMaterials } = useContext(CategoriesContext);
 
     console.log(savedMaterials)
 

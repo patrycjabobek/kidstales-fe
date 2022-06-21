@@ -1,0 +1,39 @@
+.listing-item {
+    height: 70px;
+}
+
+
+.listing-item-details {
+}
+
+.image {
+    width: 10%;
+}
+
+.title {
+    padding-top: 15px;
+    font-weight: bold;
+}
+
+.more  {
+    display: flex;
+    padding-bottom: 5px;
+
+}
+
+.more h3 {
+    font-size: 14px;
+    font-weight: 400;
+    width: 25%;
+}
+
+.button {
+    text-align: right;
+}
+
+.price,
+.mark {
+    font-size: 16px;
+    font-weight: 600;
+    text-align: center;
+}

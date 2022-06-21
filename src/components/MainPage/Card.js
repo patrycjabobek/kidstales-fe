@@ -7,7 +7,9 @@ export default function Card(props) {
 
 
     return (
-        <div className={'card'} style={{boxShadow: props.boxShadow}}>
+        <div className={'card'}
+             style={{boxShadow: props.boxShadow}}
+        >
             <Link to={props.url}>
                 <div className={'image-box'}
                      style={{

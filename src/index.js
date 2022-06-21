@@ -3,18 +3,18 @@ import ReactDOM from 'react-dom';
 
 import App from './App';
 import {UserProvider } from './contexts/UserContext';
-import { MaterialsProvider } from './contexts/MaterialsContext';
+import { CategoriesProvider } from './contexts/CategoriesContext';
 import {FavoritesAuthorsProvider} from "./contexts/FavoritesAuthorsContext";
 
 import './index.css';
 ReactDOM.render(
   <React.StrictMode>
     <UserProvider>
-        <MaterialsProvider>
+        <CategoriesProvider>
             <FavoritesAuthorsProvider>
                 <App />
             </FavoritesAuthorsProvider>
-        </MaterialsProvider>
+        </CategoriesProvider>
     </UserProvider>
   </React.StrictMode>,
   document.getElementById('root')

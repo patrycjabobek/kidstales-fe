@@ -45,7 +45,7 @@ export default function Login() {
 
     const logGoogleUser = async () => {
         const {user} = await signInWithGooglePopup();
-        navigate('/');
+        navigate('/identity');
     }
 
     async function handleSubmit(e) {

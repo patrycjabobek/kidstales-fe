@@ -1,28 +1,37 @@
 import React, {useContext} from 'react'
+
 import Card from "./Card";
-import './mainPage.css';
 import OvalButton from "../Buttons/OvalButton";
+
+import './mainPage.css';
 import parentsReadingImage from '../../assets/images/parents-reading-book.png';
+
 import {Dot, MainTitle} from '../../styledHelpers/Components'
-import {Link} from "react-router-dom";
+
 import {UserContext} from "../../contexts/UserContext";
+import {useNavigate} from "react-router-dom";
+import CategoriesPreview from "../CategoriesPreview/CategoriesPreview";
 
 export default function MainPage() {
     const { currentUser } = useContext(UserContext);
+    const navigate = useNavigate();
 
-    if (currentUser) {
-        return (
-            <div className={'mainPage-container-logged'}>
-                <MainTitle >Witaj w Strefie Dziecka</MainTitle>
-                <p className={'description'}>W tej strefie będziesz mógł zapewnić Twoim pociechom bezpieczną rozrywkę poprzez dostęp do najpiękniejszych utworów dedykowanych najmłodszym</p>
-                <div className={'card-container'}>
-                   <Card title={'POCZYTAJ MI MAMO!'} bgColor={'#FE9549'} boxShadow={'0 5px 50px rgba(254, 149, 73, 0.6)'} url={"/stories"}/>
-                    <Card title={'WŁĄCZ MI BAJKĘ TATO!'} bgColor={'#6684D3'} boxShadow={'0 5px 50px rgba(102, 132, 211, 0.6)'} url={"/cartoons"}/>
-                    <Card title={'POŚPIEWAJMY RAZEM!'} bgColor={'#CDB534'} boxShadow={'0 5px 50px rgba(205, 181, 52, 0.6)'} url={"/songs"}/>
-                </div>
-            </div>
-        )
-    } else if (currentUser) {
+    const goToListingHandler = (path) => {
+        navigate(path);
+    }
+
+    // if (currentUser) {
+    //     return (
+    //         <div className={'mainPage-container-logged'}>
+    //             <MainTitle >Witaj w Strefie Dziecka</MainTitle>
+    //             <p className={'description'}>W tej strefie będziesz mógł zapewnić Twoim pociechom bezpieczną rozrywkę poprzez dostęp do najpiękniejszych utworów dedykowanych najmłodszym</p>
+    //             <div className={'card-container'}>
+    //               <CategoriesPreview/>
+    //             </div>
+    //         </div>
+    //     )
+    // } else
+        if (currentUser) {
         return (
             <div className={'mainPage-container-logged'}>
                 <MainTitle >Witaj w Strefie Twórcy</MainTitle>
