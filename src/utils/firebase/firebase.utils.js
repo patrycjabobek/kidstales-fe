@@ -9,6 +9,11 @@ import {
     onAuthStateChanged,
     sendPasswordResetEmail,
     sendEmailVerification,
+    updateEmail,
+    updatePassword,
+    updateProfile,
+    updateCurrentUser,
+    updatePhoneNumber
 } from "firebase/auth";
 import {getFirestore,
     doc,
@@ -18,7 +23,10 @@ import {getFirestore,
     writeBatch,
     query,
     getDocs
-} from 'firebase/firestore'
+} from 'firebase/firestore';
+import {
+    getStorage
+} from 'firebase/storage'
 
 const firebaseConfig = {
     apiKey: "AIzaSyCPLNjYR7f4Ow3dWDS1TT_sucBONmHNMeg",
@@ -30,6 +38,8 @@ const firebaseConfig = {
 };
 
 const app = initializeApp(firebaseConfig);
+
+export const storage = getStorage(app);
 
 const provider = new GoogleAuthProvider();
 
@@ -69,13 +79,22 @@ export const getCategoriesAndDocuments = async () => {
 
     return categoryMap;
 }
+export const getUsersAndDocuments = async () => {
+    const collectionRef = collection(db, 'users');
+    const q = query(collectionRef);
+
+    const querySnapshot = await getDocs(q);
+    const userMap = querySnapshot.forEach((doc) => {
+        console.log(doc.id, " => ", doc.data());
+    });
+
+    return userMap;
+}
 
 export const createUserDocumentFromAuth = async (
     userAuth,
     moreInfo = {
         identity: '',
-        imgUrl: '',
-        userDescription: '',
     }
 ) => {
     if (!userAuth) return;
@@ -87,9 +106,6 @@ export const createUserDocumentFromAuth = async (
     if (!userSnapshot.exists()){
         const {displayName, email, uid} = userAuth;
         const createdAt = new Date();
-        const identity = '';
-        const imgUrl = '';
-        const userDescription = '';
 
         try {
             await setDoc(userDocRef, {
@@ -97,9 +113,6 @@ export const createUserDocumentFromAuth = async (
                 displayName,
                 email,
                 createdAt,
-                identity,
-                imgUrl,
-                userDescription,
                 ...moreInfo
             });
         }catch (e) {
@@ -136,4 +149,10 @@ export const sendUserPasswordResetEmail = async (email) => {
     if (!email) return;
 
     return await sendPasswordResetEmail(auth, email);
+}
+
+export const updateUserProfile = async (user, displayName) => {
+    if (!user) return;
+
+    return user.updateProfile({ displayName });
 }

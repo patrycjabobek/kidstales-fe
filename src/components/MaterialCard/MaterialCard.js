@@ -1,54 +1,71 @@
-import React, {Fragment, useContext} from "react";
+import React, {Fragment, useContext, useEffect, useState} from "react";
 import {useLocation, useParams} from "react-router-dom";
-import {CategoriesContext} from "../../contexts/CategoriesContext";
-
+import { doc, getDoc } from "firebase/firestore";
 import './material-card.module.css'
+import {db} from "../../utils/firebase/firebase.utils";
 
 
 export function MaterialCard() {
-    const { materials, saveMaterial, savedMaterials } = useContext(CategoriesContext);
+    const [material, setMaterial] = useState({});
     const location = useLocation()
-    let {category, id} = useParams();
-    const previousMaterial = materials[id-1];
+    const { id } = useParams();
 
-    const material = materials[id];
-    const {title, author, description, price, imgUrl} = previousMaterial;
+    useEffect(() => {
+        const getDocument = async () => {
+            try {
+                const docRef = doc(db, "materials", id);
+                const docSnap = await getDoc(docRef).then((doc) => {
+                    console.log(doc.data(), doc.id);
+                });
 
-    const saveMaterialForUser = () => {
+                if (docSnap.exists()) {
+                    setMaterial(docSnap.data());
+                } else {
+                    console.log("No such document!");
+                }
+            } catch  (e) {
+                console.log(e)
+            };
+            getDocument();
+        }
+    }, [])
 
-        saveMaterial(material);
-        console.log('SAVED')
-        console.log(savedMaterials)
-    }
+    console.log(material)
+    // const saveMaterialForUser = () => {
+    //
+    //     saveMaterial(material);
+    //     console.log('SAVED')
+    //     console.log(savedMaterials)
+    // }
 
 
     return (
         <Fragment key={id}>
             <div className="material-card-container ">
-                <div className="img-container gr1">
-                    <img src={imgUrl} alt={`${title}`}/>
-                </div>
+                {/*<div className="img-container gr1">*/}
+                {/*    <img src={imgUrl} alt={`${title}`}/>*/}
+                {/*</div>*/}
 
-                    <div className="info gr2">
-                        <div className="info-details">
-                            <h3>{title}</h3>
-                            <h4>{author}</h4>
-                        </div>
-                        <div className="mark">
-                            ocena
-                        </div>
-                    </div>
-                    <div className="info gr3">
-                        <h2 className="price">{price} zł</h2>
-                        <div className="button-box">
-                            <button>ZOBACZ</button>
-                            <button onClick={saveMaterialForUser}>KUP</button>
-                        </div>
-                    </div>
+                {/*    <div className="info gr2">*/}
+                {/*        <div className="info-details">*/}
+                {/*            <h3>{title}</h3>*/}
+                {/*            <h4>{author}</h4>*/}
+                {/*        </div>*/}
+                {/*        <div className="mark">*/}
+                {/*            ocena*/}
+                {/*        </div>*/}
+                {/*    </div>*/}
+                {/*    <div className="info gr3">*/}
+                {/*        <h2 className="price">{price} zł</h2>*/}
+                {/*        <div className="button-box">*/}
+                {/*            <button>ZOBACZ</button>*/}
+                {/*            <button onClick={saveMaterialForUser}>KUP</button>*/}
+                {/*        </div>*/}
+                {/*    </div>*/}
 
-                <div className="gr4 description-box">
-                    <p>{description}</p>
-                </div>
+                {/*<div className="gr4 description-box">*/}
+                {/*    <p>{description}</p>*/}
+                {/*</div>*/}
             </div>
         </Fragment>
     )

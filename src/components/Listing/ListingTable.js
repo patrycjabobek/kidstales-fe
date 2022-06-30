@@ -1,4 +1,4 @@
-import React, {Fragment, useContext, useState} from 'react'
+import React, {Fragment, useContext, useEffect, useState} from 'react'
 import styled from 'styled-components';
 import Logo from "../Logo/Logo";
 import NavBar from "../Navigation/NavBar";
@@ -7,12 +7,31 @@ import ListingItem from './ListingItem'
 import {CategoriesContext} from '../../contexts/CategoriesContext'
 
 import styles from './listing-table.module.css';
-import {query, where} from "firebase/firestore";
+import {getDocs, collection} from "firebase/firestore";
+import {db} from "../../utils/firebase/firebase.utils";
 
 
-export default function ListingTable(props) {
-    const { categoriesMap } = useContext(CategoriesContext);
-    let {categoriesList, setCategoriesList} = useState();
+export default function ListingTable() {
+    // const { categoriesMap } = useContext(CategoriesContext);
+    const [data, setData] = useState([]);
+
+    useEffect(() => {
+        const fetchData = async () => {
+          let list = [];
+          try {
+            const querySnapshot = await getDocs(collection(db, "materials"));
+            querySnapshot.forEach((doc) => {
+              list.push({ id: doc.id, ...doc.data() });
+            });
+            setData(list);
+          } catch (err) {
+            console.log(err);
+          }
+        };
+        fetchData();
+
+    }, []);
+
 
     function handleSearch(e) {
         // categoriesList = categoriesMap;
@@ -46,16 +65,12 @@ export default function ListingTable(props) {
                             </tr>
                         </thead>
                         <tbody>
-                            {
-                                Object.keys(categoriesMap).map((title) =>
-                                    <Fragment key={title}>
-                                        {categoriesMap[title].map((material) => (
+
+                                    <Fragment key={data.id}>
+                                        {data.map((material) => (
                                             <ListingItem key={material.id} material={material}/>
                                         ))}
                                     </Fragment>
-                                )}
-
-                            {/*<ListingItem key={props.title} material={props.materials}/>*!/*/}
                         </tbody>
                     </table>
 

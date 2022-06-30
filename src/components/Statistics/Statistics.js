@@ -31,7 +31,7 @@ export default function Statistics() {
                         <option value="stories">Opowiadania</option>
                         <option value="cartoons">Bajki</option>
                         <option value="songs">Piosenki</option>
-                        <option value="other" selected>Inne</option>
+                        <option value="other">Inne</option>
                     </select>
                 </div>
                 <div>

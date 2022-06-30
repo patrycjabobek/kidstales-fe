@@ -1,4 +1,4 @@
-import React, {useContext} from 'react'
+import React, {useContext, useEffect, useState} from 'react'
 import styled from 'styled-components';
 import { StyledLink } from '../../styledHelpers/Components';
 import { fontSize } from '../../styledHelpers/FontSizes';
@@ -9,7 +9,8 @@ import {Link, useNavigate} from "react-router-dom";
 import './navBar.css';
 
 import {UserContext} from "../../contexts/UserContext";
-import { signOutUser} from '../../utils/firebase/firebase.utils'
+import {db, signOutUser} from '../../utils/firebase/firebase.utils';
+import {doc, getDoc} from "firebase/firestore";
 
 const Nav = styled.ul`
   list-style: none;
@@ -40,58 +41,21 @@ const DropdownContent = styled.div`
   z-index: 1;
 `;
 export default function NavBar() {
-    const { currentUser } = useContext(UserContext);
+    const {currentUser} = useContext(UserContext);
+
+    console.log('currentUser ', currentUser)
+    // console.log('user ', user)
     const navigate = useNavigate();
 
-    // console.log("Email: " + currentUser.uid)
-    // if (currentUser) {
-    //     const uid = currentUser.uid;
-    //     return uid;
-    // }
-
-    // const docs = db.collection('users')
-    //     .where('user', '==', uid)
-    //     .get();
-    // console.log(docs)
-    // console.log(currentUser.uid)
-
-
-    // console.log(currentUser.data);
     async function handleSignOut() {
         await signOutUser();
         navigate('/login');
     }
 
-    // if (currentUser ) {
-    //     return (
-    //         <Nav>
-    //             <NavItem><StyledLink to="/listing">Dla dziecka</StyledLink></NavItem>
-    //             <NavItem><StyledLink to="/contact">Kontakt</StyledLink></NavItem>
-    //             <NavItem>
-    //                 <Dropdown className={'dropdown'}>
-    //                     <OvalButton url={'/profile'}
-    //                                   backgroundColor={'#E0F1FA'}
-    //                                   color={'#0C2C80'}
-    //                                   borderRadius={'20px'}
-    //                                   padding={'6px 16px'}
-    //                                   fontSize={'1.13rem'}
-    //                                   fontWeight={'600'}
-    //                                   content={'Mój profil'}
-    //                                   className={'dropdownBtn'}
-    //                     ></OvalButton>
-    //                     <DropdownContent className={'dropdown-content'}>
-    //                         <Link to="/profile">Profil</Link>
-    //                         <Link to="/settings">Ustawienia</Link>
-    //                         <span onClick={handleSignOut}>Wyloguj się</span>
-    //                     </DropdownContent>
-    //                 </Dropdown>
-    //             </NavItem>
-    //         </Nav>)
-    // } else
     if (currentUser ) {
         return (
             <Nav>
-                <NavItem><StyledLink to="/author-zone">Dla autora</StyledLink></NavItem>
+                <NavItem>{currentUser.displayName}</NavItem>
                 <NavItem><StyledLink to="/contact">Kontakt</StyledLink></NavItem>
                 <NavItem>
                     <Dropdown className={'dropdown'}>
@@ -107,6 +71,31 @@ export default function NavBar() {
                         ></OvalButton>
                         <DropdownContent className={'dropdown-content'}>
                             <Link to="/profile">Profil</Link>
+                            <Link to="/settings">Ustawienia</Link>
+                            <span onClick={handleSignOut}>Wyloguj się</span>
+                        </DropdownContent>
+                    </Dropdown>
+                </NavItem>
+            </Nav>)
+    } else if (currentUser ) {
+        return (
+            <Nav>
+                <NavItem>{currentUser.displayName}</NavItem>
+                <NavItem><StyledLink to="/contact">Kontakt</StyledLink></NavItem>
+                <NavItem>
+                    <Dropdown className={'dropdown'}>
+                        <OvalButton url={'/author'}
+                                    backgroundColor={'#E0F1FA'}
+                                    color={'#0C2C80'}
+                                    borderRadius={'20px'}
+                                    padding={'6px 16px'}
+                                    fontSize={'1.13rem'}
+                                    fontWeight={'600'}
+                                    content={'Mój profil'}
+                                    className={'dropdownBtn'}
+                        ></OvalButton>
+                        <DropdownContent className={'dropdown-content'}>
+                            <Link to="/author">Profil</Link>
                             <Link to="/settings">Ustawienia</Link>
                             <span onClick={handleSignOut}>Wyloguj się</span>
                         </DropdownContent>

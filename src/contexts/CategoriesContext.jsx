@@ -1,6 +1,7 @@
 import  {createContext, useState, useEffect} from 'react';
 
-import { getCategoriesAndDocuments } from "../utils/firebase/firebase.utils";
+import { getCategoriesAndDocuments, addCollectionAndDocuments } from "../utils/firebase/firebase.utils";
+import MATERIALS_DATA from "../materias-data";
 
 const saveMaterialForUser = (savedMaterials, materialToAdd) => {
     const existingMaterial = savedMaterials.find((materialItem) => materialItem.id === materialToAdd.id);
@@ -22,7 +23,10 @@ export const CategoriesContext = createContext({
 export const CategoriesProvider = ({ children }) => {
     const [categoriesMap, setCategoriesMap] = useState({});
     const [savedMaterials, setSavedMaterials] = useState([]);
-
+    //
+    // useEffect(() => {
+    //     addCollectionAndDocuments('categories', MATERIALS_DATA);
+    // }, [])
     useEffect(() => {
         const getCategoriesMap = async () => {
             const categoryMap = await getCategoriesAndDocuments();

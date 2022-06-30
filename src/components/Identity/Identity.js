@@ -1,6 +1,8 @@
 import React, {useContext, useState} from 'react';
 import {UserContext} from "../../contexts/UserContext";
 import {db} from "../../utils/firebase/firebase.utils";
+import {useNavigate} from "react-router-dom";
+import {doc, updateDoc} from "firebase/firestore";
 
 const defaultFormFields = {
     identity: ''
@@ -11,13 +13,15 @@ export default function Identity() {
     const [formFields, setFormFields] = useState(defaultFormFields);
     const { currentUser } = useContext(UserContext);
     const {identity} = formFields;
-    const [userDetails, setUserDetails] = useState('')
+    const navigate = useNavigate();
 
-
-    console.log()
-    function handleIdentityOption() {
+    const handleIdentityOption = async () => {
         const data = getData();
-        db.collection('users').doc(currentUser.uid).update({identity: identity});
+        const userRef = doc(db, 'users', currentUser.uid);
+        // await updateDoc(userRef, {
+        //     identity
+        // })
+        // navigate('/');
     }
 
     const getData = async () => {
@@ -41,14 +45,14 @@ export default function Identity() {
                        id="parent"
                        name="identity"
                        onChange={handleChange}
-                       onSubmit={handleIdentityOption}/>
+                       onClick={handleIdentityOption}/>
                 <label htmlFor="author">Twórcą</label>
                 <input type="radio"
                        value="author"
                        id="author"
                        name="identity"
                        onChange={handleChange}
-                       onSubmit={handleIdentityOption}/>
+                       onClick={handleIdentityOption}/>
             </div>
         </>
 

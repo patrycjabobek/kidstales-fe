@@ -1,4 +1,4 @@
-import React, {useContext} from 'react'
+import React, {useContext, useEffect, useState} from 'react'
 
 import Card from "./Card";
 import OvalButton from "../Buttons/OvalButton";
@@ -9,38 +9,32 @@ import parentsReadingImage from '../../assets/images/parents-reading-book.png';
 import {Dot, MainTitle} from '../../styledHelpers/Components'
 
 import {UserContext} from "../../contexts/UserContext";
-import {useNavigate} from "react-router-dom";
 import CategoriesPreview from "../CategoriesPreview/CategoriesPreview";
+import {doc, getDoc} from "firebase/firestore";
+import {db} from "../../utils/firebase/firebase.utils";
 
-export default function MainPage() {
+export default function MainPage(props) {
     const { currentUser } = useContext(UserContext);
-    const navigate = useNavigate();
+    const user = props.user;
 
-    const goToListingHandler = (path) => {
-        navigate(path);
-    }
 
-    // if (currentUser) {
-    //     return (
-    //         <div className={'mainPage-container-logged'}>
-    //             <MainTitle >Witaj w Strefie Dziecka</MainTitle>
-    //             <p className={'description'}>W tej strefie będziesz mógł zapewnić Twoim pociechom bezpieczną rozrywkę poprzez dostęp do najpiękniejszych utworów dedykowanych najmłodszym</p>
-    //             <div className={'card-container'}>
-    //               <CategoriesPreview/>
-    //             </div>
-    //         </div>
-    //     )
-    // } else
-        if (currentUser) {
+
+
+    if (currentUser ) {
+        return (
+            <div className={'mainPage-container-logged'}>
+                <MainTitle >Witaj w Strefie Dziecka</MainTitle>
+                <p className={'description'}>W tej strefie będziesz mógł zapewnić Twoim pociechom bezpieczną rozrywkę poprzez dostęp do najpiękniejszych utworów dedykowanych najmłodszym</p>
+                  <CategoriesPreview identity="parent"/>
+            </div>
+        )
+    } else
+        if (currentUser ) {
         return (
             <div className={'mainPage-container-logged'}>
                 <MainTitle >Witaj w Strefie Twórcy</MainTitle>
                 <p className={'description'}>W tej strefie będziesz mógł udostępniać innym użytkownikom swoją twórczość, śledzić statystyki oraz spersonalizować Twój profil</p>
-                <div className={'card-container'}>
-                    <Card title={'DODAJ UTWÓR'} bgColor={'#B7E073'} boxShadow={'0 5px 50px rgba(183, 224, 115, 0.6)'} url={"/add"}/>
-                    <Card title={'MÓJ PROFIL'} bgColor={'#42498C'} boxShadow={'0 5px 50px rgba(66, 73, 140, 0.6)'} url={"/account"}/>
-                    <Card title={'MOJE STATYSTYKI'} bgColor={'#64CF76'} boxShadow={'0 5px 50px rgba(100, 207, 118, 0.6)'} url={"/statistics"}/>
-                </div>
+                    <CategoriesPreview />
             </div>
         )
     }

@@ -4,7 +4,12 @@
     height: 370px;
     background: #fff;
     border-radius: 20px;
+    transition: 0.3s;
+}
 
+.card:hover {
+    box-shadow: 0 5px 50px rgb(46, 11, 121) !important;
+    transition: 0.3s;
 }
 
 .image-box {

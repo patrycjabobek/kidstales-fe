@@ -21,7 +21,7 @@ const MATERIALS_DATA = [
       {
         "id": 3,
         "title": "Cinderella",
-        "author": "Patrycja Bobek",
+        "author": "Kamil Głowacki",
         "description": "ada a dadad dad",
         "price": 0,
         "imgUrl": "dasdsd addad"
@@ -29,7 +29,7 @@ const MATERIALS_DATA = [
       {
         "id": 4,
         "title": "Cinderella",
-        "author": "Patrycja Bobek",
+        "author": "Małgorzata Kosicka",
         "description": "ada a dadad dad",
         "price": 12,
         "imgUrl": "dasdsd addad"
@@ -37,7 +37,7 @@ const MATERIALS_DATA = [
       {
         "id": 5,
         "title": "Cinderella",
-        "author": "Patrycja Bobek",
+        "author": "Małgorzata Kosicka",
         "description": "ada a dadad dad",
         "price": 12,
         "imgUrl": "dasdsd addad"
@@ -45,7 +45,7 @@ const MATERIALS_DATA = [
       {
         "id": 6,
         "title": "Cinderella",
-        "author": "Patrycja Bobek",
+        "author": "Juan Gomez",
         "description": "ada a dadad dad",
         "price": 12,
         "imgUrl": "dasdsd addad"
@@ -61,7 +61,7 @@ const MATERIALS_DATA = [
       {
         "id": 8,
         "title": "Cinderella",
-        "author": "Patrycja Bobek",
+        "author": "Juan Gomez",
         "description": "ada a dadad dad",
         "price": 12,
         "imgUrl": "dasdsd addad"
@@ -69,7 +69,7 @@ const MATERIALS_DATA = [
       {
         "id": 9,
         "title": "Cinderella",
-        "author": "Patrycja Bobek",
+        "author": "Juan Gomez",
         "description": "ada a dadad dad",
         "price": 12,
         "imgUrl": "dasdsd addad"
@@ -77,7 +77,7 @@ const MATERIALS_DATA = [
       {
         "id": 10,
         "title": "Cinderella",
-        "author": "Patrycja Bobek",
+        "author": "Małgorzata Kosicka",
         "description": "ada a dadad dad",
         "price": 12,
         "imgUrl": "dasdsd addad"
@@ -85,7 +85,7 @@ const MATERIALS_DATA = [
       {
         "id": 11,
         "title": "Cinderella",
-        "author": "Patrycja Bobek",
+        "author": "Małgorzata Kosicka",
         "description": "ada a dadad dad",
         "price": 12,
         "imgUrl": "dasdsd addad"
@@ -93,7 +93,7 @@ const MATERIALS_DATA = [
       {
         "id": 12,
         "title": "Cinderella",
-        "author": "Patrycja Bobek",
+        "author": "Kamil Głowacki",
         "description": "ada a dadad dad",
         "price": 12,
         "imgUrl": "dasdsd addad"
@@ -105,23 +105,23 @@ const MATERIALS_DATA = [
     materials: [
       {
         "id": 1,
-        "title": "Cinderella",
-        "author": "Patrycja Bobek",
+        "title": "Mickey Mouse",
+        "author": "Juan Gomez",
         "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. In eu justo laoreet, tempor libero a, feugiat odio. Integer consectetur mattis ipsum venenatis gravida. Pellentesque suscipit augue vitae nulla varius egestas. Vivamus vulputate turpis vitae elit tincidunt iaculis. Proin placerat turpis at massa cursus, vel consequat tortor fermentum. Etiam laoreet, quam vitae mattis tristique, nisl odio efficitur augue, non suscipit ligula mi a erat. In elementum arcu eu varius porta. Curabitur eget sodales nulla, in venenatis magna. Proin non nunc in dolor vulputate eleifend at nec elit. Pellentesque iaculis arcu non ante sodales vulputate. Vivamus feugiat libero nec tempus consequat. Nam ullamcorper pulvinar nibh. Etiam arcu tortor, interdum at sapien vel, accumsan bibendum tellus. Interdum et malesuada fames ac ante ipsum primis in faucibus. Vivamus fringilla luctus tellus, ac interdum ex finibus sed.",
         "price": 12,
         "imgUrl": "dasdsd addad"
       },
       {
         "id": 2,
-        "title": "Cinderella",
-        "author": "Patrycja Bobek",
+        "title": "Mickey Mouse",
+        "author": "Juan Gomez",
         "description": "ada a dadad dad",
         "price": 12,
         "imgUrl": "dasdsd addad"
       },
       {
         "id": 3,
-        "title": "Cinderella",
+        "title": "Mickey Mouse",
         "author": "Patrycja Bobek",
         "description": "ada a dadad dad",
         "price": 0,
@@ -129,72 +129,72 @@ const MATERIALS_DATA = [
       },
       {
         "id": 4,
-        "title": "Cinderella",
-        "author": "Patrycja Bobek",
+        "title": "Mickey Mouse",
+        "author": "Małgorzata Kosicka",
         "description": "ada a dadad dad",
         "price": 12,
         "imgUrl": "dasdsd addad"
       },
       {
         "id": 5,
-        "title": "Cinderella",
-        "author": "Patrycja Bobek",
+        "title": "Mickey Mouse",
+        "author": "Małgorzata Kosicka",
         "description": "ada a dadad dad",
         "price": 12,
         "imgUrl": "dasdsd addad"
       },
       {
         "id": 6,
-        "title": "Cinderella",
-        "author": "Patrycja Bobek",
+        "title": "Mickey Mouse",
+        "author": "Małgorzata Kosicka",
         "description": "ada a dadad dad",
         "price": 12,
         "imgUrl": "dasdsd addad"
       },
       {
         "id": 7,
-        "title": "Cinderella",
-        "author": "Patrycja Bobek",
+        "title": "Mickey Mouse",
+        "author": "Małgorzata Kosicka",
         "description": "ada a dadad dad",
         "price": 12,
         "imgUrl": "dasdsd addad"
       },
       {
         "id": 8,
-        "title": "Cinderella",
-        "author": "Patrycja Bobek",
+        "title": "Mickey Mouse",
+        "author": "Juan Gomez",
         "description": "ada a dadad dad",
         "price": 12,
         "imgUrl": "dasdsd addad"
       },
       {
         "id": 9,
-        "title": "Cinderella",
-        "author": "Patrycja Bobek",
+        "title": "Mickey Mouse",
+        "author": "Juan Gomez",
         "description": "ada a dadad dad",
         "price": 12,
         "imgUrl": "dasdsd addad"
       },
       {
         "id": 10,
-        "title": "Cinderella",
-        "author": "Patrycja Bobek",
+        "title": "Mickey Mouse",
+        "author": "Kamil Głowacki",
         "description": "ada a dadad dad",
         "price": 12,
         "imgUrl": "dasdsd addad"
       },
       {
         "id": 11,
-        "title": "Cinderella",
-        "author": "Patrycja Bobek",
+        "title": "Mickey Mouse",
+        "author": "Kamil Głowacki",
         "description": "ada a dadad dad",
         "price": 12,
         "imgUrl": "dasdsd addad"
       },
       {
         "id": 12,
-        "title": "Cinderella",
-        "author": "Patrycja Bobek",
+        "title": "Mickey Mouse",
+        "author": "Małgorzata Kosicka",
         "description": "ada a dadad dad",
         "price": 12,
         "imgUrl": "dasdsd addad"
@@ -207,7 +207,7 @@ const MATERIALS_DATA = [
       {
         "id": 1,
         "title": "Shark doo doo doo",
-        "author": "Patrycja Bobek",
+        "author": "Juan Gomez",
         "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. In eu justo laoreet, tempor libero a, feugiat odio. Integer consectetur mattis ipsum venenatis gravida. Pellentesque suscipit augue vitae nulla varius egestas. Vivamus vulputate turpis vitae elit tincidunt iaculis. Proin placerat turpis at massa cursus, vel consequat tortor fermentum. Etiam laoreet, quam vitae mattis tristique, nisl odio efficitur augue, non suscipit ligula mi a erat. In elementum arcu eu varius porta. Curabitur eget sodales nulla, in venenatis magna. Proin non nunc in dolor vulputate eleifend at nec elit. Pellentesque iaculis arcu non ante sodales vulputate. Vivamus feugiat libero nec tempus consequat. Nam ullamcorper pulvinar nibh. Etiam arcu tortor, interdum at sapien vel, accumsan bibendum tellus. Interdum et malesuada fames ac ante ipsum primis in faucibus. Vivamus fringilla luctus tellus, ac interdum ex finibus sed.",
         "price": 12,
         "imgUrl": "dasdsd addad"
@@ -215,7 +215,7 @@ const MATERIALS_DATA = [
       {
         "id": 2,
         "title": "Shark doo doo doo",
-        "author": "Patrycja Bobek",
+        "author": "Juan Gomez",
         "description": "ada a dadad dad",
         "price": 12,
         "imgUrl": "dasdsd addad"
@@ -223,7 +223,7 @@ const MATERIALS_DATA = [
       {
         "id": 3,
         "title": "Shark doo doo doo",
-        "author": "Patrycja Bobek",
+        "author": "Juan Gomez",
         "description": "ada a dadad dad",
         "price": 0,
         "imgUrl": "dasdsd addad"
@@ -231,7 +231,7 @@ const MATERIALS_DATA = [
       {
         "id": 4,
         "title": "Shark doo doo doo",
-        "author": "Patrycja Bobek",
+        "author": "Małgorzata Kosicka",
         "description": "ada a dadad dad",
         "price": 12,
         "imgUrl": "dasdsd addad"
@@ -239,7 +239,7 @@ const MATERIALS_DATA = [
       {
         "id": 5,
         "title": "Shark doo doo doo",
-        "author": "Patrycja Bobek",
+        "author": "Małgorzata Kosicka",
         "description": "ada a dadad dad",
         "price": 12,
         "imgUrl": "dasdsd addad"
@@ -255,7 +255,7 @@ const MATERIALS_DATA = [
       {
         "id": 7,
         "title": "Shark doo doo doo",
-        "author": "Patrycja Bobek",
+        "author": "Kamil Głowacki",
         "description": "ada a dadad dad",
         "price": 12,
         "imgUrl": "dasdsd addad"
@@ -263,7 +263,7 @@ const MATERIALS_DATA = [
       {
         "id": 8,
         "title": "Cinderella",
-        "author": "Patrycja Bobek",
+        "author": "Kamil Głowacki",
         "description": "ada a dadad dad",
         "price": 12,
         "imgUrl": "dasdsd addad"
@@ -271,7 +271,7 @@ const MATERIALS_DATA = [
       {
         "id": 9,
         "title": "Cinderella",
-        "author": "Patrycja Bobek",
+        "author": "Kamil Głowacki",
         "description": "ada a dadad dad",
         "price": 12,
         "imgUrl": "dasdsd addad"
@@ -279,7 +279,7 @@ const MATERIALS_DATA = [
       {
         "id": 10,
         "title": "Cinderella",
-        "author": "Patrycja Bobek",
+        "author": "Małgorzata Kosicka",
         "description": "ada a dadad dad",
         "price": 12,
         "imgUrl": "dasdsd addad"
@@ -287,7 +287,7 @@ const MATERIALS_DATA = [
       {
         "id": 11,
         "title": "Cinderella",
-        "author": "Patrycja Bobek",
+        "author": "Małgorzata Kosicka",
         "description": "ada a dadad dad",
         "price": 12,
         "imgUrl": "dasdsd addad"
@@ -295,7 +295,7 @@ const MATERIALS_DATA = [
       {
         "id": 12,
         "title": "Cinderella",
-        "author": "Patrycja Bobek",
+        "author": "Kamil Głowacki",
         "description": "ada a dadad dad",
         "price": 12,
         "imgUrl": "dasdsd addad"

@@ -9,14 +9,14 @@ const Navigation = styled.nav`
   padding-top: 20px;
 `
 
-export default function TopBar(props) {
+export default function TopBar() {
 
 
     return (
         <React.Fragment>
             <Navigation>
                 <Logo/>
-                <NavBar isLoggedIn={true} isParent={false}/>
+                <NavBar />
             </Navigation>
         </React.Fragment>
     )

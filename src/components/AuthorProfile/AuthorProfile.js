@@ -1,12 +1,17 @@
 import
-    React from "react";
+    React, {useContext, useState} from "react";
 import Popup from "reactjs-popup";
 import './author-profile.module.css';
 import 'reactjs-popup/dist/index.css';
-
+import {UserContext} from "../../contexts/UserContext";
+import {db} from "../../utils/firebase/firebase.utils";
+import {updateDoc} from 'firebase/firestore';
 
 
 export default function AuthorProfile() {
+    const {currentUser} = useContext(UserContext);
+    const [changeDetails, setChangeDetails] = useState(false)
+
 
     function handleIssueReport() {
 
@@ -16,18 +21,26 @@ export default function AuthorProfile() {
 
     }
 
+    const onSubmit = () => {
+        console.log("submit")
+    }
+
     return (
         <>
             <div className="profile-info-container">
                 <div>
                     <button>SAVE</button>
-                    <Popup trigger={<button>Edytuj profil</button>} position="right center">
+                    <Popup trigger={<button>{changeDetails ? 'Zapisz' : 'Edytuj profil'}</button>} position="right center">
                         <div>
+
                             <form action="">
                                 <div>
                                     <button>X</button>
                                     <h3>Edytuj profil</h3>
-                                    <button>Zapisz</button>
+                                    <button onClick={() => {
+                                        changeDetails && onSubmit()
+                                        setChangeDetails((prevState) => !prevState)
+                                    }}>Zapisz</button>
                                 </div>
                                 <div>
                                     <input type="file"/>

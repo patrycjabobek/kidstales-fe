@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
+import {BrowserRouter as Router, Navigate, Route, Routes} from 'react-router-dom'
 import { AuthProvider } from "./contexts/AuthContext"
 
 import Layout from './layout/Layout';
@@ -23,13 +23,21 @@ import AuthorProfile from "./components/AuthorProfile/AuthorProfile";
 import Statistics from "./components/Statistics/Statistics";
 import AddMaterial from "./components/AuthorProfile/AddMaterial";
 import Identity from "./components/Identity/Identity";
+import {useContext} from "react";
+import {UserContext} from "./contexts/UserContext";
 
 // Test
 
 function App() {
+  //   const { currentUser } = useContext(UserContext);
+  //
+  //   const RequireAuth = ({children}) => {
+  //     return currentuser ? (children) : <Navigate to="/login"/>
+  // }
+
   return (
       <Router>
-          <Layout isLoggedIn={false} isParent={false}>
+          <Layout >
               <AuthProvider>
               <Routes>
                       <Route exact path="/" element={<MainPage />} />

@@ -50,3 +50,8 @@ export const Dot = styled.span`
   border-radius: 50%;
   display: inline-block;
 `;
+
+export const  ListingContainer = styled.div`
+  background: white;
+  padding: 20px 40px;
+`;
