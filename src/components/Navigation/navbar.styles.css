@@ -1,14 +1,24 @@
 .dropdown:hover .dropdown-content {
-    display: block;
+    display: grid;
 }
 
-.dropdown-content  a, > span {
+.dropdown-content  a,
+.dropdown-content span {
     color: #4753BC;
     font-weight: lighter;
-    padding: 12px 16px;
+    padding: 5px 16px 5px 0;
     text-decoration: none;
     display: block;
     margin: 5px;
+}
+
+.dropdown-content span {
+    color: red;
+    cursor: pointer;
+}
+
+.dropdown-content span:hover {
+    text-transform: uppercase;
 }
 
 

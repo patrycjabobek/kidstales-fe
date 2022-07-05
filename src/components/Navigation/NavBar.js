@@ -6,11 +6,11 @@ import { Colors } from '../../styledHelpers/Colors';
 import OvalButton from "../Buttons/OvalButton";
 import {Link, useNavigate} from "react-router-dom";
 
-import './navBar.css';
+import './navbar.styles.css';
 
 import {UserContext} from "../../contexts/UserContext";
 import {db, signOutUser} from '../../utils/firebase/firebase.utils';
-import {doc, getDoc} from "firebase/firestore";
+import {collection, doc, getDoc, getDocs, query, where} from "firebase/firestore";
 
 const Nav = styled.ul`
   list-style: none;
@@ -35,16 +35,16 @@ const Dropdown = styled.div`
 const DropdownContent = styled.div`
   display: none;
   position: absolute;
+  padding: 10px;
   background-color: #fff;
-  min-width: 160px;
+  min-width: 180px;
   border-radius: 0 0 10px 10px;
   z-index: 1;
 `;
 export default function NavBar() {
-    const {currentUser} = useContext(UserContext);
-
+    const {currentUser, userIdentity} = useContext(UserContext);
+    const [identity, setIdentity] = useState("")
     console.log('currentUser ', currentUser)
-    // console.log('user ', user)
     const navigate = useNavigate();
 
     async function handleSignOut() {
@@ -52,7 +52,21 @@ export default function NavBar() {
         navigate('/login');
     }
 
-    if (currentUser ) {
+    useEffect(() => {
+        const getUserData = async () => {
+
+            const usersRef = doc(db, "users", currentUser.uid);
+            const docSnap = await getDoc(usersRef);
+
+            const data = docSnap.exists() ? docSnap.data() : null
+
+            setIdentity(data.identity);
+        }
+        getUserData();
+    }, [currentUser])
+
+
+    if (currentUser && identity === "parent") {
         return (
             <Nav>
                 <NavItem>{currentUser.displayName}</NavItem>
@@ -77,7 +91,7 @@ export default function NavBar() {
                     </Dropdown>
                 </NavItem>
             </Nav>)
-    } else if (currentUser ) {
+    } else if (currentUser && identity === "author") {
         return (
             <Nav>
                 <NavItem>{currentUser.displayName}</NavItem>

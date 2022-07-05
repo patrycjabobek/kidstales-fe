@@ -1,4 +1,4 @@
-import React, {useContext, useState, useEffect} from 'react';
+import React, { useContext } from 'react';
 
 
 import {CategoriesContext} from "../../contexts/CategoriesContext";
@@ -20,3 +20,4 @@ export default function StoriesListing() {
             </ListingContainer>
         )
 }
+

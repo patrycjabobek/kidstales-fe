@@ -27,9 +27,7 @@ export default function Registration() {
 
     const navigate = useNavigate();
 
-    const resetFormFields = () => {
-        setFormFields(defaultFormFields);
-    }
+
     const handleChange = (ev) => {
         const { name,value } = ev.target;
         setFormFields({...formFields, [name]: value});
@@ -49,10 +47,9 @@ export default function Registration() {
             setError('');
             setLoading(true);
             const {user} = await createAuthUserWithEmailANdPassword(email, password);
-            await updateProfile(user, {displayName: displayName});
             await createUserDocumentFromAuth(user, {displayName, identity});
+            await updateProfile(user, {displayName: displayName});
 
-            resetFormFields();
             navigate('/');
         } catch(e) {
             if (e.code === "auth/email-already-in-use") {

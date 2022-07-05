@@ -6,6 +6,16 @@ import {
 } from '../utils/firebase/firebase.utils';
 import {doc, getDoc} from "firebase/firestore";
 
+const getUserData = async (uid) => {
+    const usersRef = doc(db, "users", uid);
+    const docSnap = await getDoc(usersRef);
+
+    const data = docSnap.exists() ? docSnap.data() : null
+
+    console.log(data);
+    console.log(data.identity);
+    return data;
+}
 
 export const UserContext = createContext({
     currentUser: null,
@@ -14,7 +24,7 @@ export const UserContext = createContext({
 
 export const UserProvider = ({children}) => {
     const [currentUser, setCurrentUser] = useState(null);
-    // const [user, setUser] = useState(null);
+    const [userIdentity, setUserIdentity] = useState(null);
 
 
     useEffect(() => {
@@ -22,10 +32,16 @@ export const UserProvider = ({children}) => {
             // console.log(user);
             if (user) {
                 createUserDocumentFromAuth(user);
+                getUserData(user.uid).then((identity) => {
+                    setUserIdentity(identity);
+                    console.log("indetity", userIdentity);
+
+                });
             }
             setCurrentUser(user);
 
         });
+
 
         return unsub;
     }, [])
@@ -46,7 +62,7 @@ export const UserProvider = ({children}) => {
     //     }
     // }, [])
 
-    const value = {currentUser, setCurrentUser};
+    const value = {currentUser, setCurrentUser, userIdentity, setUserIdentity};
 
     return <UserContext.Provider value={value}>{children}</UserContext.Provider>
 }

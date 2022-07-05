@@ -65,7 +65,7 @@ export default function AddMaterial() {
         } catch (er) {
             console.log(er)
         }
-
+        navigate(-1);
     }
 
 

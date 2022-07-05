@@ -1,7 +1,4 @@
 import React, {Fragment, useContext, useEffect, useState} from 'react'
-import styled from 'styled-components';
-import Logo from "../Logo/Logo";
-import NavBar from "../Navigation/NavBar";
 import ListingItem from './ListingItem'
 
 import {CategoriesContext} from '../../contexts/CategoriesContext'

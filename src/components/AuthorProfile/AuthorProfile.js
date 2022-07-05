@@ -1,17 +1,38 @@
 import
-    React, {useContext, useState} from "react";
+    React, {useContext, useEffect, useState, Fragment} from "react";
 import Popup from "reactjs-popup";
 import './author-profile.module.css';
 import 'reactjs-popup/dist/index.css';
 import {UserContext} from "../../contexts/UserContext";
 import {db} from "../../utils/firebase/firebase.utils";
-import {updateDoc} from 'firebase/firestore';
+import {collection, getDocs, query, where} from 'firebase/firestore';
+import ListingItem from "../Listing/ListingItem";
 
 
 export default function AuthorProfile() {
     const {currentUser} = useContext(UserContext);
     const [changeDetails, setChangeDetails] = useState(false)
+    const [userMaterials, setUserMaterials] = useState([]);
 
+    useEffect(() => {
+        const fetchData = async () => {
+            let list = [];
+            try {
+                const q = query(collection(db, "materials"), where("authorId", "==", currentUser.uid))
+                const querySnapshot = await getDocs(q);
+                querySnapshot.forEach((doc) => {
+                    console.log(doc.id, " => ", doc.data());
+                    list.push({ id: doc.id, ...doc.data() });
+                });
+                setUserMaterials(list);
+            } catch (err) {
+                console.log(err);
+            }
+        };
+        fetchData();
+
+    }, []);
+    console.log(userMaterials)
 
     function handleIssueReport() {
 
@@ -57,7 +78,8 @@ export default function AuthorProfile() {
                     <img src="" alt="profile image"/>
                 </div>
                 <div>
-                    <h3>User name</h3>
+                    <h3>
+                    </h3>
                 </div>
                 <div>
                     <div>
@@ -75,6 +97,13 @@ export default function AuthorProfile() {
             </div>
             <div className="materials-container">
                 <h3>TWOJE MATERIAŁY</h3>
+                <div>
+                    {
+                        userMaterials.map((material) => (
+                            <ListingItem key={material.id} material={material}/>
+                        ))}
+                    }
+                </div>
                 <Popup trigger={<button>Edytuj</button>} position="right center">
                     <div>
                         <div>
@@ -85,7 +114,9 @@ export default function AuthorProfile() {
                         <div>
                             line
                         </div>
+
                         <div>
+
                             <form action="">
                                 <div>
                                     <div className="form-group">

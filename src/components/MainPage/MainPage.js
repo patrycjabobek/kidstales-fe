@@ -13,14 +13,25 @@ import CategoriesPreview from "../CategoriesPreview/CategoriesPreview";
 import {doc, getDoc} from "firebase/firestore";
 import {db} from "../../utils/firebase/firebase.utils";
 
-export default function MainPage(props) {
+export default function MainPage() {
     const { currentUser } = useContext(UserContext);
-    const user = props.user;
+    const [identity, setIdentity] = useState("")
+
+    useEffect(() => {
+        const getUserData = async () => {
+
+            const usersRef = doc(db, "users", currentUser.uid);
+            const docSnap = await getDoc(usersRef);
+
+            const data = docSnap.exists() ? docSnap.data() : null
+
+            setIdentity(data.identity);
+        }
+        getUserData();
+    }, [currentUser])
 
 
-
-
-    if (currentUser ) {
+    if (currentUser && identity === "parent") {
         return (
             <div className={'mainPage-container-logged'}>
                 <MainTitle >Witaj w Strefie Dziecka</MainTitle>
@@ -29,7 +40,7 @@ export default function MainPage(props) {
             </div>
         )
     } else
-        if (currentUser ) {
+        if (currentUser && identity === "author" ) {
         return (
             <div className={'mainPage-container-logged'}>
                 <MainTitle >Witaj w Strefie Twórcy</MainTitle>
