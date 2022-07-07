@@ -32,11 +32,10 @@ export const UserProvider = ({children}) => {
             // console.log(user);
             if (user) {
                 createUserDocumentFromAuth(user);
-                getUserData(user.uid).then((identity) => {
-                    setUserIdentity(identity);
-                    console.log("indetity", userIdentity);
-
-                });
+                // getUserData(user.uid).then((identity) => {
+                //     setUserIdentity(identity);
+                //
+                // });
             }
             setCurrentUser(user);
 

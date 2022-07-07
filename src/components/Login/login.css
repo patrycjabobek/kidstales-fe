@@ -52,6 +52,21 @@
     cursor: pointer;
 }
 
+.googleBtn {
+    background-color:  #ffffff;
+    border-radius: 5px;
+    padding: 10px;
+    width: 100%;
+    border: none;
+    font-size:0.85rem;
+    font-weight: normal;
+    margin-bottom: 10px;
+    background-image: url("../../assets/icons/icons8-google-48.png");
+    background-repeat: no-repeat;
+    background-size: 30px;
+    background-position: left 14px center;
+    cursor: pointer;
+}
 
 .label {
     color: #fff;

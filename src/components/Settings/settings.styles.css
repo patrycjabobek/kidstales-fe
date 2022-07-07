@@ -1,0 +1,124 @@
+.header-container {
+    background-color: #fff;
+    padding: 0;
+    border-radius: 10px 10px 0 0;
+}
+
+.settings-container {
+    background-color: #fff;
+    padding: 10px 40px 50px 40px;
+}
+
+
+.header {
+    font-family: 'Overpass', sans-serif;
+    color: #FE9549;
+    font-size: 24px;
+    letter-spacing: 0.5px;
+    margin: 15px 0 30px 0;
+    padding: 30px  0 0 40px;
+
+}
+
+.account-settings {
+
+}
+.account-settings h3,
+.support-settings h3,
+.application-settings h3,
+.login-settings h3 {
+    font-family: 'Lilita One', cursive;
+    color: #0C2C80;
+    letter-spacing: 0.6px;
+}
+
+.grid {
+    display: grid;
+}
+
+.grid button {
+    text-align: left;
+}
+
+.grid button:last-child {
+    color: red;
+}
+.support-settings > button,
+.login-settings > button,
+.grid button,
+.grid a {
+    border: none;
+    background: none;
+    font-size: 18px;
+    font-family: 'Overpass', sans-serifs, serif;
+    padding: 5px 0;
+    font-weight: 500;
+    cursor: pointer;
+}
+
+.line,
+.line2 {
+    width: 100%;
+    padding: 0;
+
+}
+.line {
+    background-color: rgba(211, 211, 211, 0.53);
+    height: 2px;
+}
+
+.line2 {
+    background-color: #A4ADFE;
+    margin: 10px 0;
+    height: 1px;
+}
+
+/*popUp styling*/
+#popup-root .popup-content {
+    width: 500px;
+    padding: 20px 20px 40px 20px;
+    position: absolute;
+    z-index: 999;
+    pointer-events: auto;
+    top: 50% !important;
+    left: 50% !important;
+    transform: translate(-50%, -50%);
+}
+
+.popup-content p {
+    color: #5961A5;
+    font-size: 12px;
+}
+.popup-arrow {
+    width: 0;
+}
+[role='tooltip'].popup-content {
+    width: 200px;
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 0px 3px;
+}
+
+.popup-overlay {
+    background: rgba(0, 0, 0, 0.5);
+}
+[data-popup='tooltip'].popup-overlay {
+    background: transparent;
+}
+
+.form-group label{
+    color: #5961A5;
+}
+
+.form-group input {
+    background-color: #E0F1FA;
+}
+.popup-button {
+    background: #5961A5;
+    color: #fff;
+    font-family: 'Overpass', sans-serif;
+    padding: 5px 10px;
+    border: none;
+    border-radius: 5px;
+    font-weight: 200;
+    margin-top: 20px;
+    float: right;
+}

@@ -20,12 +20,17 @@ export default function MainPage() {
     useEffect(() => {
         const getUserData = async () => {
 
-            const usersRef = doc(db, "users", currentUser.uid);
-            const docSnap = await getDoc(usersRef);
+            try {
+                const usersRef = doc(db, "users", currentUser.uid);
+                const docSnap = await getDoc(usersRef);
 
-            const data = docSnap.exists() ? docSnap.data() : null
+                const data = docSnap.exists() ? docSnap.data() : null
 
-            setIdentity(data.identity);
+                setIdentity(data.identity);
+
+            } catch (e) {
+                console.log(e)
+            }
         }
         getUserData();
     }, [currentUser])

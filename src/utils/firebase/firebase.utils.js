@@ -13,7 +13,8 @@ import {
     updatePassword,
     updateProfile,
     updateCurrentUser,
-    updatePhoneNumber
+    updatePhoneNumber,
+    deleteUser
 } from "firebase/auth";
 import {getFirestore,
     doc,
@@ -165,4 +166,26 @@ export const updateUserProfile = async (user, displayName) => {
     if (!user) return;
 
     return user.updateProfile({ displayName });
+}
+
+export const updateUserEmail = async (user, email) => {
+    if (!email || !user) return;
+
+    return updateEmail(user, email);
+}
+
+export const deleteUserAccount = async (user) => {
+    if (!user) return;
+
+    return deleteUser(user).then(() => {
+        console.log("User successfully deleted!")
+    }).catch((e) => {
+        console.log(e);
+    })
+}
+
+export const updateUserPassword = async (user, password) => {
+    if (!user || !password) return;
+
+    return updatePassword(user, password);
 }

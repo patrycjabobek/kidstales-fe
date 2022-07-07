@@ -8,7 +8,6 @@ import './login.css'
 
 import {
     signInWithGooglePopup,
-    createUserDocumentFromAuth,
     signInAuthUserWithEmailAndPassword
 } from "../../utils/firebase/firebase.utils";
 
@@ -69,6 +68,8 @@ export default function Login() {
         setLoading(false)
     }
 
+
+
     const handleChange = (ev) => {
         const { name, value } = ev.target;
 
@@ -87,8 +88,8 @@ export default function Login() {
                 </div>}
                 <div className={'signing-section'}>
                     <div className={'thirdParty'}>
-                        <button  onClick={logGoogleUser}>
-                            Sign In with Google
+                        <button  onClick={logGoogleUser} className="googleBtn">
+                            Zaloguj się przez Google
                         </button>
                         <OvalButton url={'/register'}
                                     content={'Zarejestruj sie przez adres e-mail'}

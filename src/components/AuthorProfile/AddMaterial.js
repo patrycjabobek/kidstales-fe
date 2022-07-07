@@ -47,9 +47,10 @@ export default function AddMaterial() {
     const handleChange = (ev) => {
         const { name,value } = ev.target;
         setData({...data, [name]: value});
+
     }
 
-    console.log(data)
+    console.log("data: ", data);
     const addMaterial = async (event) => {
         event.preventDefault();
 

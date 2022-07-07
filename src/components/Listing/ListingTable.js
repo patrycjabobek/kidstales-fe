@@ -8,26 +8,9 @@ import {getDocs, collection} from "firebase/firestore";
 import {db} from "../../utils/firebase/firebase.utils";
 
 
-export default function ListingTable() {
+export default function ListingTable(props) {
     // const { categoriesMap } = useContext(CategoriesContext);
-    const [data, setData] = useState([]);
-
-    useEffect(() => {
-        const fetchData = async () => {
-          let list = [];
-          try {
-            const querySnapshot = await getDocs(collection(db, "materials"));
-            querySnapshot.forEach((doc) => {
-              list.push({ id: doc.id, ...doc.data() });
-            });
-            setData(list);
-          } catch (err) {
-            console.log(err);
-          }
-        };
-        fetchData();
-
-    }, []);
+    const materials = props.materials;
 
 
     function handleSearch(e) {
@@ -62,9 +45,8 @@ export default function ListingTable() {
                             </tr>
                         </thead>
                         <tbody>
-
-                                    <Fragment key={data.id}>
-                                        {data.map((material) => (
+                                    <Fragment key={materials.id}>
+                                        {materials.map((material) => (
                                             <ListingItem key={material.id} material={material}/>
                                         ))}
                                     </Fragment>
