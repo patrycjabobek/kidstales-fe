@@ -8,14 +8,14 @@ import userIcon from '../../assets/icons/account_circle_FILL1_wght400_GRAD200_op
 
 
 export default function ListingItem(props) {
-    const {id, title, author, price, createdAt} = props.material;
+    const {id, title, author, price, createdAt, imgUrl} = props.material;
 
 
     return (
                     <tr key={id} className={styles.listingItem}>
                         <td className={styles.image}>
-                            {/*{imgUrl ? <img src={imgUrl} alt={`${title}`}/> : */}
-                                <img src={userIcon} alt="not found"/>
+                            {imgUrl === null ? <img src={imgUrl} alt={`${title}`}/> :
+                                <img src={userIcon} alt="not found"/>}
                         </td>
                         <td className={styles.mark}>
                             Ocena

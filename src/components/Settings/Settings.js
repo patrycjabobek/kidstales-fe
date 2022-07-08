@@ -136,7 +136,8 @@ export default function Settings() {
                         <Popup trigger={<button>E-mail</button>} >
                             <div>
                                 <div className="form-group">
-                                    <label htmlFor="email">E-mail</label>
+                                    <label htmlFor="email"
+                                        style={{color: "#5961A5"}}>E-mail</label>
                                     <input type="email"
                                            name="email"
                                            id="email"
@@ -145,7 +146,7 @@ export default function Settings() {
                                            required/>
                                 </div>
                                 <div className="form-group">
-                                    <label htmlFor="confirmEmail">Powtórz e-mail</label>
+                                    <label htmlFor="confirmEmail" style={{color: "#5961A5"}}>Powtórz e-mail</label>
                                     <input type="email"
                                            name="confirmEmail"
                                            id="confirmEmail"
@@ -159,7 +160,7 @@ export default function Settings() {
                         <Popup trigger={<button>Hasło</button>} >
                             <div>
                                 <div className="form-group">
-                                    <label htmlFor="password">Hasło</label>
+                                    <label htmlFor="password" style={{color: "#5961A5"}}>Hasło</label>
                                     <input type="password"
                                            name="password"
                                            id="password"
@@ -168,7 +169,7 @@ export default function Settings() {
                                            required/>
                                 </div>
                                 <div className="form-group">
-                                    <label htmlFor="confirmPassword">Powtórz hasło</label>
+                                    <label htmlFor="confirmPassword" style={{color: "#5961A5"}}>Powtórz hasło</label>
                                     <input type="password"
                                            name="confirmPassword"
                                            id="confirmPassword"
@@ -185,7 +186,7 @@ export default function Settings() {
                             <Popup trigger={<button>Rachunek bankowy do rozliczeń</button>} >
                                 <div>
                                     <div className="form-group">
-                                        <label htmlFor="bankAccountNumber">Numer rachunku</label>
+                                        <label htmlFor="bankAccountNumber" style={{color: "#5961A5"}}>Numer rachunku</label>
                                         <input type="number"
                                                name="bankAccountNumber"
                                                id="bankAccountNumber"

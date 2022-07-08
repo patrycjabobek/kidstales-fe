@@ -6,7 +6,7 @@ import {db, storage} from "../../utils/firebase/firebase.utils";
 
 import {collection, addDoc, setDoc, doc} from "firebase/firestore";
 import {ref, uploadBytesResumable, getDownloadURL} from 'firebase/storage';
-
+import './add-material.styles.css';
 
 export default function AddMaterial() {
     const { currentUser } = useContext(UserContext);
@@ -71,14 +71,14 @@ export default function AddMaterial() {
 
 
     return (
-        <>
+        <div className="add-material-container">
             <div>
                 <h3>Dodaj utwór</h3>
                 <p>Prześlij swoje materiały, wprowadź tytuł oraz opis, wstaw miniaturę , wyceń i kliknij DODAJ </p>
             </div>
             <div>
                 <div>
-                    <button onClick={() => navigate(-1)}>WRÓĆ</button>
+                    <button onClick={() => navigate(-1)} className="mainBtn">WRÓĆ</button>
                 </div>
                 <div>
                     <form onSubmit={addMaterial}>
@@ -128,13 +128,14 @@ export default function AddMaterial() {
                         <div>
                             <input type="file"
                                    id="file"
-                                   onChange={(e) => setFile(e.target.files[0])}/>
+                                   onChange={(e) => setFile(e.target.files[0])}
+                                   className="input-material"/>
                         </div>
-                    <button disabled={per !== null && per< 100} type="submit">DODAJ</button>
+                    <button disabled={per !== null && per< 100} type="submit" className="mainBtn">DODAJ</button>
                     </form>
                 </div>
             </div>
-        </>
+        </div>
 
     )
 }

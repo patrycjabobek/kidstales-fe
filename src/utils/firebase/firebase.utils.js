@@ -26,8 +26,9 @@ import {getFirestore,
     getDocs
 } from 'firebase/firestore';
 import {
+    getDownloadURL,
     getStorage
-} from 'firebase/storage'
+} from 'firebase/storage';
 
 const firebaseConfig = {
     apiKey: "AIzaSyCPLNjYR7f4Ow3dWDS1TT_sucBONmHNMeg",
@@ -97,6 +98,7 @@ export const createUserDocumentFromAuth = async (
     moreInfo = {
         identity: '',
         imgUrl: '',
+        bgUrl: '',
         userDescription: '',
     }
 ) => {
@@ -189,3 +191,4 @@ export const updateUserPassword = async (user, password) => {
 
     return updatePassword(user, password);
 }
+

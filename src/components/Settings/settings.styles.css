@@ -104,9 +104,6 @@
     background: transparent;
 }
 
-.form-group label{
-    color: #5961A5;
-}
 
 .form-group input {
     background-color: #E0F1FA;
@@ -121,4 +118,5 @@
     font-weight: 200;
     margin-top: 20px;
     float: right;
+    cursor: pointer;
 }

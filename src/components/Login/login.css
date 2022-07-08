@@ -222,3 +222,11 @@ input[type="radio"]:hover label {
 .regulations a {
     color: #2DCDFF;
 }
+
+.alert {
+    color: #fff;
+    background: red;
+    margin: 0;
+    padding: 2px 10px;
+    border-radius: 10px;
+}

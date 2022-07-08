@@ -15,12 +15,15 @@ const defaultFormFields = {
     email: '',
     password: '',
     confirmPassword: '',
-    identity: ''
+    identity: '',
+    imgUrl: '',
+    bgUrl: '',
+    userDescription: ''
 }
 
 export default function Registration() {
     const [formFields, setFormFields] = useState(defaultFormFields);
-    const {displayName, email, password, confirmPassword, identity} = formFields;
+    const {displayName, email, password, confirmPassword, identity, imgUrl, bgUrl, userDescription} = formFields;
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState('');
     const {currentUser} = useContext(UserContext);
@@ -47,7 +50,7 @@ export default function Registration() {
             setError('');
             setLoading(true);
             const {user} = await createAuthUserWithEmailANdPassword(email, password);
-            await createUserDocumentFromAuth(user, {displayName, identity});
+            await createUserDocumentFromAuth(user, {displayName, identity, imgUrl, bgUrl, userDescription});
             await updateProfile(user, {displayName: displayName});
 
             navigate('/');

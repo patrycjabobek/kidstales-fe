@@ -44,7 +44,7 @@ export default function Login() {
 
     const logGoogleUser = async () => {
         const {user} = await signInWithGooglePopup();
-        navigate('/identity');
+        navigate("/")
     }
 
     async function handleSubmit(e) {
@@ -83,9 +83,7 @@ export default function Login() {
             </div>
             <div className={'section2'}>
                 <MainTitle>Stwórz swój profil</MainTitle>
-                {error && <div className="alert alert-danger">
-                    <p>{error}</p>
-                </div>}
+
                 <div className={'signing-section'}>
                     <div className={'thirdParty'}>
                         <button  onClick={logGoogleUser} className="googleBtn">

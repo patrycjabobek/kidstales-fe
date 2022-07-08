@@ -128,7 +128,7 @@ export default function NavBar() {
             <NavItem><StyledLink to="/parent-zone">Dla dziecka</StyledLink></NavItem>
             <NavItem><StyledLink to="/author-zone">Dla autora</StyledLink></NavItem>
             <NavItem><StyledLink to="/contact">Kontakt</StyledLink></NavItem>
-            <NavItem> <OvalButton url={'/register'}
+            <NavItem> <OvalButton url={'/login'}
                                   backgroundColor={'#E0F1FA'}
                                   color={'#0C2C80'}
                                   borderRadius={'20px'}

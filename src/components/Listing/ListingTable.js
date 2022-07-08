@@ -52,7 +52,6 @@ export default function ListingTable(props) {
                                     </Fragment>
                         </tbody>
                     </table>
-
             </div>
         </Fragment>
     )
