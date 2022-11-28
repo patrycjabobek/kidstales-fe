@@ -1,10 +1,10 @@
-.header-container {
+.headerContainer {
     background-color: #fff;
     padding: 0;
     border-radius: 10px 10px 0 0;
 }
 
-.settings-container {
+.settingsContainer {
     background-color: #fff;
     padding: 10px 40px 50px 40px;
 }
@@ -20,13 +20,13 @@
 
 }
 
-.account-settings {
+.accountSettings {
 
 }
-.account-settings h3,
-.support-settings h3,
-.application-settings h3,
-.login-settings h3 {
+.accountSettings h3,
+.supportSettings h3,
+.applicationSettings h3,
+.loginSettings h3 {
     font-family: 'Lilita One', cursive;
     color: #0C2C80;
     letter-spacing: 0.6px;
@@ -43,8 +43,8 @@
 .grid button:last-child {
     color: red;
 }
-.support-settings > button,
-.login-settings > button,
+.supportSettings > button,
+.loginSettings > button,
 .grid button,
 .grid a {
     border: none;

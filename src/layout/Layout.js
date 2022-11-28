@@ -1,7 +1,7 @@
 import React from 'react'
 import Footer from '../components/Footer/Footer'
 import TopBar from '../components/TopBar/TopBar'
-import './layout.css';
+import './layout.styles.scss';
 
 export default function Layout({children}) {
 

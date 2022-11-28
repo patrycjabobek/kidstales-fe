@@ -1,11 +1,10 @@
-import React, {useContext, useEffect, useState} from 'react';
+import React, { useEffect, useState} from 'react';
 
 
-import {CategoriesContext} from "../../contexts/CategoriesContext";
 
 import ListingTable from "./ListingTable";
-import {StyledTitle} from "../../styledHelpers/Components";
-import {ListingContainer} from "../../styledHelpers/Components";
+import {StyledTitle, ListingContainer, StyledListingDescription} from "../../styledHelpers/Components";
+
 import {collection, getDocs, query, where} from "firebase/firestore";
 import {db} from "../../utils/firebase/firebase.utils";
 
@@ -35,7 +34,7 @@ export default function StoriesListing() {
         return (
             <ListingContainer>
                 <StyledTitle>Opowiadania</StyledTitle>
-                <p>Wybierz opowiadania, które Ci sie podoba. Możesz skorzystać z darmowych utworów lub wesprzeć autora i wykupić nieograniczony dostęp do twórczości wybranego autora.</p>
+                <StyledListingDescription>Wybierz opowiadania, które Ci sie podoba. Możesz skorzystać z darmowych utworów lub wesprzeć autora i wykupić nieograniczony dostęp do twórczości wybranego autora.</StyledListingDescription>
                 <ListingTable materials={stories} />
             </ListingContainer>
         )

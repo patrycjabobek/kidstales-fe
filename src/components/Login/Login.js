@@ -4,7 +4,7 @@ import {Link, useNavigate} from 'react-router-dom';
 import { MainTitle, Wrapper} from '../../styledHelpers/Components'
 import OvalButton from "../Buttons/OvalButton";
 
-import './login.css'
+import styles from './login.module.scss';
 
 import {
     signInWithGooglePopup,
@@ -78,15 +78,15 @@ export default function Login() {
 
     return (
         <Wrapper>
-            <div className={'section1 login-info'}>
+            <div className={`${styles.section1} ${styles.loginInfo}`}>
                 <h3>Dołacz do nas za darmo!</h3>
             </div>
-            <div className={'section2'}>
+            <div className={styles.section2} >
                 <MainTitle>Stwórz swój profil</MainTitle>
 
-                <div className={'signing-section'}>
-                    <div className={'thirdParty'}>
-                        <button  onClick={logGoogleUser} className="googleBtn">
+                <div className={styles.signingSection}>
+                    <div className={styles.thirdParty}>
+                        <button  onClick={logGoogleUser} className={styles.googleBtn}>
                             Zaloguj się przez Google
                         </button>
                         <OvalButton url={'/register'}
@@ -99,15 +99,15 @@ export default function Login() {
                                     fontSize={'0.85rem'}
                                     fontWeight={'normal'}/>
                     </div>
-                    <div className={'hr-label'}>
-                        <span className={'label'}>lub</span>
+                    <div className={styles.hrLabel}>
+                        <span className={styles.label}>lub</span>
                     </div>
-                    <div className={'loginForm'}>
-                        {error && <div className="alert alert-danger">
+                    <div className={styles.loginForm}>
+                        {error && <div className={`${styles.alert}  ${styles.alertDanger}`}>
                             <p>{error}</p>
                         </div>}
                         <form onSubmit={handleSubmit}>
-                            <div className="form-group">
+                            <div className={styles.formGroup}>
                                 <label htmlFor="email">Email</label>
                                 <input type="email"
                                        id="email"
@@ -115,7 +115,7 @@ export default function Login() {
                                        onChange={handleChange}
                                        value={email} required/>
                             </div>
-                            <div className="form-group" >
+                            <div className={styles.formGroup} >
                                 <label htmlFor="password">Hasło</label>
                                 <input type="password"
                                        id="password"
@@ -126,15 +126,15 @@ export default function Login() {
 
                             <button disabled={loading}
                                     type="submit"
-                                    className={'submitBtn'}
+                                    className={styles.submitBtn}
                                         >Zaloguj się</button>
                         </form>
-                        <div className={'other-options'}>
-                            <div className={'rememberMe-field'}>
+                        <div className={styles.otherOptions}>
+                            <div className={styles.rememberMeField}>
                                 <input type="checkbox" defaultChecked={true}/>
                                 Zapamiętaj mnie
                             </div>
-                            <Link to={'/password-reset'} className={'forgotPassword-field'} href="">Zapomniałem hasła</Link>
+                            <Link to={'/password-reset'} className={styles.forgotPasswordField} href="">Zapomniałem hasła</Link>
                         </div>
                     </div>
                 </div>

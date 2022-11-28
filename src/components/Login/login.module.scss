@@ -11,7 +11,7 @@
     text-align: center;
 }
 
-.login-info {
+.loginInfo {
     margin: 40px 0;
     background: #5961A5;
     color: #fff;
@@ -19,19 +19,18 @@
     border-radius: 10px;
 }
 
-.login-info h3 {
+.loginInfo h3 {
     font-size: 1.55rem;
 }
 
-.signing-section {
+.signingSection {
     max-width: 400px;
     margin: 40px auto;
 
 }
 
-.thirdPatry {
+.thirdParty {
     display: grid;
-    justify-content: center;
 }
 
 .facebookBtn{
@@ -74,12 +73,12 @@
     font-size: 0.83rem !important;
 }
 
-.hr-label {
+.hrLabel {
     margin: 30px 0;
     text-align: center;
     overflow: hidden;
 }
-.hr-label::before {
+.hrLabel::before {
     content: '';
     position: relative;
     width: 50%;
@@ -91,7 +90,7 @@
     right: 0.5em;
 }
 
-.hr-label::after {
+.hrLabel::after {
     content: '';
     position: relative;
     width: 50%;
@@ -103,24 +102,26 @@
     left: 0.5em;
 }
 
-.form-group {
+.formGroup {
     display: grid;
+
+    & label {
+        color: #3D27C5;
+        font-size: 0.85rem;
+        padding: 8px 0;
+    }
+
+    & input {
+        border-radius: 5px;
+        border: 1px solid #3D27C5;
+        padding: 8px 0;
+
+        &:active {
+            border: 2px solid #3D27C5;
+        }
+    }
 }
 
-.form-group label {
-    color: #3D27C5;
-    font-size: 0.85rem;
-    padding: 8px 0;
-}
-.form-group input {
-    border-radius: 5px;
-    border: 1px solid #3D27C5;
-    padding: 8px 0;
-}
-
-.form-group input:active {
-    border: 2px solid #3D27C5;
-}
 
 .submitBtn {
     background-color: #FE9549;
@@ -137,61 +138,65 @@
     background-position: right 24px center;
 }
 
-.other-options {
+.otherOptions {
     display: flex;
     justify-content: space-between;
 }
-.rememberMe-field,
-.forgotPassword-field {
+.rememberMeField,
+.forgotPasswordField {
     color: #0C2C80;
 }
 
-.forgotPassword-field {
+.forgotPasswordField {
     text-decoration: underline;
 }
 
 
-.registration-form {
+.registrationForm {
     background-color: #5961A5;
     color: #fff ;
     margin-bottom: 50px;
     padding: 20px 10px;
+
+    & > div {
+        margin: 0 30px;
+    }
+
+    & h3 {
+        font-size: 1.55rem;
+        margin-bottom: 15px;
+    }
 }
 
-.registration-form > div {
-    margin: 0 30px;
-}
 
-
-.registration-form h3 {
-    font-size: 1.55rem;
-    margin-bottom: 15px;
-}
-.registration-form label {
+.registrationForm
+.registrationForm label {
     color: #fff;
 }
-.personalData-field {
+.personalDataField {
     display: flex;
     justify-content: space-between;
+
+    & div {
+        width: 45%;
+    }
 }
 
-.personalData-field div {
-    width: 45%;
-}
 
-.radio-group {
+.radioGroup {
     display: flex;
     justify-content: space-between;
-}
-.radio-group > label {
-    width: 45%;
-    color: #fff;
-    text-align: center;
-    background-color: #6684D3;
-    cursor: pointer;
-    margin: 10px 0;
-    border: 1px solid #3D27C5;
-    border-radius: 5px;
+
+    & > label {
+        width: 45%;
+        color: #fff;
+        text-align: center;
+        background-color: #6684D3;
+        cursor: pointer;
+        margin: 10px 0;
+        border: 1px solid #3D27C5;
+        border-radius: 5px;
+    }
 }
 
 h5 {
@@ -217,11 +222,12 @@ input[type="radio"]:hover label {
 .regulations {
     font-size: 0.74rem;
     padding: 0 10px;
+
+    & a {
+        color: #2DCDFF;
+    }
 }
 
-.regulations a {
-    color: #2DCDFF;
-}
 
 .alert {
     color: #fff;

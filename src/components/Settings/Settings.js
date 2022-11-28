@@ -11,7 +11,7 @@ import {Link, useNavigate} from "react-router-dom";
 import {UserContext} from "../../contexts/UserContext";
 import {doc, getDoc} from "firebase/firestore";
 
-import './settings.styles.css';
+import styles from './settings.module.scss';
 
 
 const defaultFormFields = {
@@ -125,17 +125,17 @@ export default function Settings() {
 
     return (
         <>
-            <div className="header-container">
-                <h3 className="header">Ustawienia</h3>
-                <div className="line"/>
+            <div className={styles.headerContainer}>
+                <h3 className={styles.header}>Ustawienia</h3>
+                <div className={styles.line}/>
             </div>
-            <div className="settings-container">
-                <div className="account-settings">
+            <div className={styles.settingsContainer}>
+                <div className={styles.accountSettings}>
                     <h3>KONTO</h3>
-                    <div className="grid">
+                    <div className={styles.grid}>
                         <Popup trigger={<button>E-mail</button>} >
                             <div>
-                                <div className="form-group">
+                                <div className={styles.formGroup}>
                                     <label htmlFor="email"
                                         style={{color: "#5961A5"}}>E-mail</label>
                                     <input type="email"
@@ -145,7 +145,7 @@ export default function Settings() {
                                            value={email}
                                            required/>
                                 </div>
-                                <div className="form-group">
+                                <div className={styles.formGroup}>
                                     <label htmlFor="confirmEmail" style={{color: "#5961A5"}}>Powtórz e-mail</label>
                                     <input type="email"
                                            name="confirmEmail"
@@ -159,7 +159,7 @@ export default function Settings() {
                         </Popup>
                         <Popup trigger={<button>Hasło</button>} >
                             <div>
-                                <div className="form-group">
+                                <div className={styles.formGroup}>
                                     <label htmlFor="password" style={{color: "#5961A5"}}>Hasło</label>
                                     <input type="password"
                                            name="password"
@@ -168,7 +168,7 @@ export default function Settings() {
                                            value={password}
                                            required/>
                                 </div>
-                                <div className="form-group">
+                                <div className={styles.formGroup}>
                                     <label htmlFor="confirmPassword" style={{color: "#5961A5"}}>Powtórz hasło</label>
                                     <input type="password"
                                            name="confirmPassword"
@@ -185,7 +185,7 @@ export default function Settings() {
                             identity === "author" &&
                             <Popup trigger={<button>Rachunek bankowy do rozliczeń</button>} >
                                 <div>
-                                    <div className="form-group">
+                                    <div className={styles.formGroup}>
                                         <label htmlFor="bankAccountNumber" style={{color: "#5961A5"}}>Numer rachunku</label>
                                         <input type="number"
                                                name="bankAccountNumber"
@@ -199,7 +199,7 @@ export default function Settings() {
                                 </div>
                             </Popup>
                         }
-                        <div className="line2"/>
+                        <div className={styles.line2}/>
                         <Popup trigger={<button>Usuń konto</button>} >
                             <div>
                                 <h3>Usuń moje konto</h3>
@@ -209,18 +209,18 @@ export default function Settings() {
                         </Popup>
                     </div>
                 </div>
-                <div className="support-settings">
+                <div className={styles.supportSettings}>
                     <h3>WSPARCIE</h3>
                     <button onClick={() => {navigate("/contact")}}>Zgłoś problem</button>
                 </div>
-                <div className="application-settings">
+                <div className={styles.applicationSettings}>
                     <h3>O APLIKACJI</h3>
-                    <div className="grid">
+                    <div className={styles.grid}>
                         <Link to='/privacy-policy'>Polityka prywatności</Link>
                         <Link to='/terms'>Warunki świadczenia usług</Link>
                     </div>
                 </div>
-                <div className="login-settings">
+                <div className={styles.loginSettings}>
                     <h3>LOGIN</h3>
                     <button onClick={handleSignOut}>Wyloguj się</button>
                 </div>

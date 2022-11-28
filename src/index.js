@@ -6,7 +6,8 @@ import {UserProvider } from './contexts/UserContext';
 import { CategoriesProvider } from './contexts/CategoriesContext';
 import {FavoritesAuthorsProvider} from "./contexts/FavoritesAuthorsContext";
 
-import './index.css';
+
+import './index.scss';
 ReactDOM.render(
   <React.StrictMode>
     <UserProvider>

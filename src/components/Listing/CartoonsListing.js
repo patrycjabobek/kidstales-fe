@@ -1,13 +1,13 @@
-import React, {useContext, useEffect, useState} from 'react';
+import React, { useEffect, useState} from 'react';
 
 
-import {CategoriesContext} from "../../contexts/CategoriesContext";
-
-import ListingTable from "../Listing/ListingTable";
-import {StyledTitle} from "../../styledHelpers/Components";
-import {ListingContainer} from "../../styledHelpers/Components";
 import {collection, getDocs, query, where} from "firebase/firestore";
 import {db} from "../../utils/firebase/firebase.utils";
+import styled from 'styled-components'
+
+import ListingTable from "../Listing/ListingTable";
+import {StyledTitle, ListingContainer, StyledListingDescription} from "../../styledHelpers/Components";
+
 
 
 
@@ -36,7 +36,7 @@ export default function CartoonsListing() {
         return (
         <ListingContainer>
             <StyledTitle>Bajki</StyledTitle>
-            <p>Wybierz bajkę, które Ci sie podoba. Możesz skorzystać z darmowych utworów lub wesprzeć autora i wykupić nieograniczony dostęp do twórczości wybranego autora.</p>
+            <StyledListingDescription>Wybierz bajkę, które Ci sie podoba. Możesz skorzystać z darmowych utworów lub wesprzeć autora i wykupić nieograniczony dostęp do twórczości wybranego autora.</StyledListingDescription>
 
             <ListingTable materials={cartoons} />
         </ListingContainer>

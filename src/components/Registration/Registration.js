@@ -1,6 +1,8 @@
 import React, {useContext, useState} from 'react'
 import {Wrapper} from "../../styledHelpers/Components";
 import {Link, useNavigate} from "react-router-dom";
+import styles from './registration.module.scss';
+
 
 import {
     createAuthUserWithEmailANdPassword,
@@ -70,15 +72,15 @@ export default function Registration() {
     }
 
     return (
-        <Wrapper className={'registration-form'}>
+        <Wrapper className={styles.registrationForm}>
             <div >
                 <h3>Dołącz do nas za darmo!</h3>
-                {error && <div className="alert alert-danger">
+                {error && <div className={`${styles.alert} ${styles.alertDanger}`}>
                     <p>{error}</p>
                 </div>}
                 <form onSubmit={handleSubmit}>
                     {/*<div className={'personalData-field'}>*/}
-                        <div className="form-group">
+                        <div className={styles.formGroup}>
                             <label htmlFor="displayName">Imię i Nazwisko</label>
                             <input type="text"
                                    name="displayName"
@@ -87,7 +89,7 @@ export default function Registration() {
                                    value={displayName} required/>
                         </div>
                     {/*</div>*/}
-                    <div className="form-group">
+                    <div className={styles.formGroup}>
                         <label htmlFor="email">Email</label>
                         <input type="email"
                                id="email"
@@ -95,7 +97,7 @@ export default function Registration() {
                                onChange={handleChange}
                                value={email} required/>
                     </div>
-                    <div className="form-group" >
+                    <div className={styles.formGroup}>
                         <label htmlFor="password">Hasło</label>
                         <input type="password"
                                id="password"
@@ -103,7 +105,7 @@ export default function Registration() {
                                onChange={handleChange}
                                value={password} required/>
                     </div>
-                    <div className="form-group" >
+                    <div className={styles.formGroup}>
                         <label htmlFor="confirmPassword">Powtórz hasło</label>
                         <input type="password"
                                id="confirmPassword"
@@ -112,7 +114,7 @@ export default function Registration() {
                                value={confirmPassword} required/>
                     </div>
                     <h5>Jestem</h5>
-                    <div className="form-group radio-group" >
+                    <div className={`${styles.formGroup} ${styles.radioGroup}`} >
                         <input type="radio"
                                id="parent"
                                name="identity"
@@ -129,10 +131,10 @@ export default function Registration() {
                     </div>
                     <button disabled={loading}
                             type="submit"
-                            className={'submitBtn'}
+                            className={styles.submitBtn}
                     >Zarejestruj się</button>
                 </form>
-                <div className={'regulations'}>Rejestrując się, zgadzasz się na <Link to={'/regulamin'}>Regulamin</Link> oraz <Link to={'/privacy-policy'}>Politykę prywatności</Link></div>
+                <div className={styles.regulations}>Rejestrując się, zgadzasz się na <Link to={'/regulamin'}>Regulamin</Link> oraz <Link to={'/privacy-policy'}>Politykę prywatności</Link></div>
             </div>
             <div>
 

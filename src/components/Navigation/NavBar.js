@@ -5,8 +5,7 @@ import { fontSize } from '../../styledHelpers/FontSizes';
 import { Colors } from '../../styledHelpers/Colors';
 import OvalButton from "../Buttons/OvalButton";
 import {Link, useNavigate} from "react-router-dom";
-
-import './navbar.styles.css';
+import styles from './navbar.module.scss';
 
 import {UserContext} from "../../contexts/UserContext";
 import {db, signOutUser} from '../../utils/firebase/firebase.utils';
@@ -25,7 +24,11 @@ const NavItem = styled.li`
   font-weight: 550;
   color: ${Colors.catalinaBlue};
   
-`
+  .user {
+    color: #fff;
+  }
+  
+`;
 
 const Dropdown = styled.div`
   position: relative;
@@ -41,9 +44,10 @@ const DropdownContent = styled.div`
   border-radius: 0 0 10px 10px;
   z-index: 1;
 `;
-export default function NavBar() {
+export default function NavBar({ className }) {
     const {currentUser} = useContext(UserContext);
-    const [identity, setIdentity] = useState("")
+    const [identity, setIdentity] = useState("");
+    const [data, setData] = useState({});
     console.log('currentUser ', currentUser)
     const navigate = useNavigate();
 
@@ -60,7 +64,7 @@ export default function NavBar() {
                 const docSnap = await getDoc(usersRef);
 
                 const data = docSnap.exists() ? docSnap.data() : null
-
+                setData(data);
                 setIdentity(data.identity);
 
             } catch (e) {
@@ -74,10 +78,10 @@ export default function NavBar() {
     if (currentUser && identity === "parent") {
         return (
             <Nav>
-                <NavItem>{currentUser.displayName}</NavItem>
+                <NavItem className={"user"}>{data.displayName}</NavItem>
                 <NavItem><StyledLink to="/contact">Kontakt</StyledLink></NavItem>
                 <NavItem>
-                    <Dropdown className={'dropdown'}>
+                    <Dropdown className={styles.dropdown}>
                         <OvalButton url={'/profile'}
                                     backgroundColor={'#E0F1FA'}
                                     color={'#0C2C80'}
@@ -88,7 +92,7 @@ export default function NavBar() {
                                     content={'Mój profil'}
                                     className={'dropdownBtn'}
                         ></OvalButton>
-                        <DropdownContent className={'dropdown-content'}>
+                        <DropdownContent className={styles.dropdownContent}>
                             <Link to="/profile">Profil</Link>
                             <Link to="/settings">Ustawienia</Link>
                             <span onClick={handleSignOut}>Wyloguj się</span>
@@ -99,10 +103,10 @@ export default function NavBar() {
     } else if (currentUser && identity === "author") {
         return (
             <Nav>
-                <NavItem>{currentUser.displayName}</NavItem>
+                <NavItem className={"user"}>{data.displayName}</NavItem>
                 <NavItem><StyledLink to="/contact">Kontakt</StyledLink></NavItem>
                 <NavItem>
-                    <Dropdown className={'dropdown'}>
+                    <Dropdown className={styles.dropdown}>
                         <OvalButton url={'/author'}
                                     backgroundColor={'#E0F1FA'}
                                     color={'#0C2C80'}
@@ -113,7 +117,7 @@ export default function NavBar() {
                                     content={'Mój profil'}
                                     className={'dropdownBtn'}
                         ></OvalButton>
-                        <DropdownContent className={'dropdown-content'}>
+                        <DropdownContent className={styles.dropdownContent}>
                             <Link to="/author">Profil</Link>
                             <Link to="/settings">Ustawienia</Link>
                             <span onClick={handleSignOut}>Wyloguj się</span>

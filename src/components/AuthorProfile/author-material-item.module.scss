@@ -1,32 +1,33 @@
-.material-item {
+.materialItem {
     height: 50px;
     margin: 10px 0;
     justify-content: space-between;
+    border-bottom: 2px solid #A4ADFE;
+    border-radius: 5px;
 }
 
-.material-item-details {
+.materialItemDetails {
     align-self: center;
     color: #0C2C80;
 }
 
 
-
-.material-title {
+.materialTitle {
     font-weight: bold;
 }
 
-.action-box {
+.actionBox {
     align-self: center;
-    border-left: 2px solid #A4ADFE;
     padding-left: 10px;
+    width: 15%;
+    & button {
+        margin: 0 5px ;
+        border: none;
+        background: none;
+        cursor: pointer;
+    }
 }
 
-.action-box button {
-    margin: 0 5px ;
-    border: none;
-    background: none;
-    cursor: pointer;
-}
 
 /*popUp styling*/
 #popup-root .editBtn-content {

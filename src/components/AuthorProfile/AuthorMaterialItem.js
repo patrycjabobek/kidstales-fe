@@ -1,6 +1,6 @@
-import React, {useState} from 'react'
+import React, {useEffect, useState} from 'react'
 
-import  './author-material-item.styles.css';
+import  styles from './author-material-item.module.scss';
 import OvalButton from "../Buttons/OvalButton";
 
 import eyeIcon from '../../assets/icons/visibility_FILL0_wght400_GRAD0_opsz48.svg';
@@ -22,6 +22,11 @@ export default function AuthorMaterialItem(props) {
             setDragActive(false);
         }
     };
+
+    useEffect(() => {
+        console.log('material',category)
+
+    },[])
 
     const handleDrop = function(e) {
         e.preventDefault();
@@ -53,12 +58,14 @@ export default function AuthorMaterialItem(props) {
     };
 
     return (
-        <tr key={id} className="material-item">
-            <td className="material-item-details">
-                <div className="material-title"
+        <tr key={id} className={styles.materialItem}>
+            <td className={styles.materialItemDetails}
+                >
+                <div className={styles.materialTitle}
                 >{title}</div>
             </td>
-            <td className="action-box">
+            <td className={styles.actionBox}
+                >
                 <Popup trigger={<button>Edytuj</button>} className="editBtn" >
                         <div className="editBtn-header">
                             <button>X</button>

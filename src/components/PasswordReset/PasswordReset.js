@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import {Wrapper} from "../../styledHelpers/Components";
 import {Colors} from "../../styledHelpers/Colors";
 import {fontSize} from "../../styledHelpers/FontSizes";
-import './passwordReset.css';
+import styles from './password-reset.module.scss';
 import {sendUserPasswordResetEmail} from "../../utils/firebase/firebase.utils";
 import {useNavigate, useParams} from "react-router-dom";
 
@@ -67,7 +67,7 @@ export default function PasswordReset({navigation}) {
             <StyledDiv>
                 <StyledTitle>Przypomnij hasło</StyledTitle>
                 <form onSubmit={handleSubmit}>
-                    <div className="form-group">
+                    <div className={styles.formGroup} >
                         <StyledLabel htmlFor="email">Email</StyledLabel>
                         <input type="email"
                                id="email"
@@ -78,7 +78,7 @@ export default function PasswordReset({navigation}) {
                     </div>
                     <button disabled={loading}
                             type="submit"
-                            className={'submitBtn'}
+                            className={styles.submitBtn}
                     >Przypomnij hasło</button>
                 </form> 
             </StyledDiv>

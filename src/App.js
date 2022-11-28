@@ -1,10 +1,7 @@
-import React, {useContext, useEffect, useState} from 'react'
+import React from 'react'
 import {BrowserRouter as Router, Route, Routes} from 'react-router-dom'
 import { AuthProvider } from "./contexts/AuthContext"
 
-import {UserContext} from "./contexts/UserContext";
-import {db} from './utils/firebase/firebase.utils';
-import {doc, getDoc} from "firebase/firestore";
 
 import Layout from './layout/Layout';
 import MainPage from "./components/MainPage/MainPage";
@@ -28,28 +25,15 @@ import AuthorProfile from "./components/AuthorProfile/AuthorProfile";
 import Statistics from "./components/Statistics/Statistics";
 import AddMaterial from "./components/AuthorProfile/AddMaterial";
 import Identity from "./components/Identity/Identity";
+import HowItWork from "./components/HowItWork/HowItWork";
 
-// Test
+import ScrollToTop from "./helpers/ScrollToTop";
 
 function App() {
-    // const { currentUser } = useContext(UserContext);
-    // const [identity, setIdentity] = useState("")
-    //
-    // useEffect(() => {
-    //     const getUserData = async () => {
-    //
-    //         const usersRef = doc(db, "users", currentUser.uid);
-    //         const docSnap = await getDoc(usersRef);
-    //
-    //         const data = docSnap.exists() ? docSnap.data() : null
-    //
-    //         setIdentity(data.identity);
-    //     }
-    //     getUserData();
-    // }, [currentUser])
 
   return (
       <Router>
+          <ScrollToTop />
           <Layout >
               <AuthProvider>
               <Routes>
@@ -79,10 +63,10 @@ function App() {
                   <Route path="/statistics" element={<Statistics />} />
                   <Route path="/add" element={<AddMaterial />} />
                   <Route path="/identity" element={<Identity />} />
+                  <Route path="/how-it-works" element={<HowItWork />} />
 
               </Routes>
               </AuthProvider>
-              {/*<MainPage />*/}
           </Layout>
       </Router>
   );

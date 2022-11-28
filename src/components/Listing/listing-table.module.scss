@@ -1,3 +1,7 @@
+.listingTableContainer {
+    position: relative;
+}
+
 .table {
     border-collapse: collapse;
     width: 100%;
@@ -14,7 +18,7 @@
     border-radius: 3px;
     color: #fff;
     outline: none;
-    right: 285px;
+    right: 0;
     z-index: 10;
 }
 

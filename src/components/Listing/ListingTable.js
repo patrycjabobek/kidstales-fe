@@ -1,11 +1,8 @@
-import React, {Fragment, useContext, useEffect, useState} from 'react'
+import React, {Fragment} from 'react'
 import ListingItem from './ListingItem'
 
-import {CategoriesContext} from '../../contexts/CategoriesContext'
 
-import styles from './listing-table.module.css';
-import {getDocs, collection} from "firebase/firestore";
-import {db} from "../../utils/firebase/firebase.utils";
+import styles from './listing-table.module.scss';
 
 
 export default function ListingTable(props) {
@@ -25,7 +22,7 @@ export default function ListingTable(props) {
 
     return (
         <Fragment>
-            <div>
+            <div className={styles.listingTableContainer}>
                     <input type="text"
                            className={styles.input}
                            placeholder={"Szukaj"}

@@ -2,16 +2,12 @@
 
 /*main page logged*/
 
-.mainPage-container-logged {
+.mainPageContainerLogged {
     /*display: inline-flex;*/
     text-align: center;
     margin-bottom: 50px;
 }
-.card-container {
-    display: flex;
-    justify-content: space-around;
-    text-align: center;
-}
+
 
 .header {
     font-family: 'Lilita One', cursive;
@@ -29,10 +25,10 @@
 
 /*main page not logged*/
 
-.mainPage-container {
+.mainPageContainer {
     margin-bottom: 50px;
 }
-.main-section {
+.mainSection {
     display: flex;
 }
 
@@ -41,35 +37,35 @@
     width: 50%;
 }
 
-.offer-container {
+.offerContainer {
     background: #ffffff;
     border-radius: 10px;
     padding: 20px 50px ;
     box-shadow: 0 5px 25px rgba(0, 0, 0, 0.2);
 }
 
-.offer-container h3 {
+.offerContainer h3 {
     font-size: 1.25rem;
     color: #0C2C80;
 }
-.description-default {
+.descriptionDefault {
     color: #0C2C80;
     padding-bottom: 20px;
     font-weight: lighter;
 }
 
-.offer-list {
+.offerList {
     display: flex;
     margin-top: 15px;
     justify-content: space-around;
 }
 
-.offer-item {
+.offerItem {
     display: grid;
     text-align: center;
     justify-items: center;
 }
-.offer-item h4{
+.offerItem h4{
     font-family: 'Overpass', serif;
     color: #3D27C5;
 }

@@ -1,10 +1,9 @@
-import React, {Fragment, useContext, useEffect, useState} from "react";
+import React, {Fragment, useEffect, useState} from "react";
 import {useLocation, useParams} from "react-router-dom";
 import { doc, getDoc } from "firebase/firestore";
-import './material-card.styles.css'
+import styles from './material-card.module.scss'
 import { getStorage, ref, getDownloadURL } from "firebase/storage";
 import {db} from "../../utils/firebase/firebase.utils";
-import {CategoriesProvider} from '../../contexts/CategoriesContext';
 
 export function MaterialCard() {
     const [material, setMaterial] = useState({});
@@ -70,13 +69,13 @@ export function MaterialCard() {
 
     return (
         <Fragment key={id}>
-            <div className="material-card-container ">
-                <div className="img-container gr1">
+            <div className={styles.materialCardContainer}>
+                <div className={`${styles.imgContainer} ${styles.gr1}`}>
                     <img src={material.img} alt={`${material.title}`}/>
                 </div>
 
-                    <div className="info gr2">
-                        <div className="info-details">
+                    <div className={`${styles.info} ${styles.gr2}`}>
+                        <div className={styles.infoDetails}>
                             <h3>{material.title}</h3>
                             <h4>{material.author}</h4>
                         </div>
@@ -84,15 +83,15 @@ export function MaterialCard() {
                         {/*    ocena*/}
                         {/*</div>*/}
                     </div>
-                    <div className="info gr3">
-                        <h2 className="price">{material.price} zł</h2>
-                        <div className="button-box">
+                    <div className={`${styles.info} ${styles.gr3}`}>
+                        <h2 className={styles.price}>{material.price} zł</h2>
+                        <div className={styles.buttonBox}>
                             {/*<button>ZOBACZ</button>*/}
                             <button onClick={viewMaterial}>ZOBACZ</button>
                         </div>
                     </div>
 
-                <div className="gr4 description-box">
+                <div className={`${styles.gr4} ${styles.descriptionBox}`}>
                     <p>{material.description}</p>
                 </div>
             </div>

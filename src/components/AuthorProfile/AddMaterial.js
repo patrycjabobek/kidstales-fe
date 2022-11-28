@@ -6,12 +6,25 @@ import {db, storage} from "../../utils/firebase/firebase.utils";
 
 import {collection, addDoc, setDoc, doc} from "firebase/firestore";
 import {ref, uploadBytesResumable, getDownloadURL} from 'firebase/storage';
-import './add-material.styles.css';
+import styles from './add-material.module.scss';
+import {Line} from "../../styledHelpers/Components";
+
+import Snackbar from '@mui/material/Snackbar';
+import Stack from '@mui/material/Stack';
+import MuiAlert from '@mui/material/Alert';
+import Button from '@mui/material/Button';
+
+const Alert = React.forwardRef(function Alert(props, ref) {
+    return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
+});
+
+
 
 export default function AddMaterial() {
     const { currentUser } = useContext(UserContext);
     const [data, setData] = useState({});
     const [file, setFile] = useState("");
+    const [open, setOpen] = React.useState(false);
     const [category, setCategory] = useState("");
     const [per, setPer] = useState(null);
     const navigate = useNavigate();
@@ -20,7 +33,6 @@ export default function AddMaterial() {
         const uploadFile = () => {
             const name = new Date().getTime() + file.name;
 
-            console.log(name);
             const storageRef = ref(storage, file.name);
             const uploadTask = uploadBytesResumable(storageRef, file);
 
@@ -32,12 +44,13 @@ export default function AddMaterial() {
                     setPer(progress);
                 },
                 (error) => {
-                    console.log(error);
+                    console.log('error',error);
                 },
                 () => {
                     getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
                         setData((prev) => ({ ...prev, img: downloadURL }));
                     });
+                    console.log('dodano do storage', name);
                 }
             );
         };
@@ -50,9 +63,19 @@ export default function AddMaterial() {
 
     }
 
-    console.log("data: ", data);
-    const addMaterial = async (event) => {
-        event.preventDefault();
+
+    const handleClose = (event, reason) => {
+        if (reason === 'clickaway') {
+            return;
+        }
+
+        setOpen(false);
+    };
+
+    // console.log("data: ", data);
+    const addMaterial = async (ev) => {
+        console.log('klik')
+        ev.preventDefault();
 
         try {
             const res = await addDoc(collection(db, 'materials'), {
@@ -62,47 +85,92 @@ export default function AddMaterial() {
                 createdAt: new Date().toLocaleDateString()
             });
             console.log(res)
-
+            console.log('dodano do bazy');
+            setOpen(true);
         } catch (er) {
             console.log(er)
         }
-        navigate(-1);
+        // navigate(-1);
     }
 
 
     return (
-        <div className="add-material-container">
-            <div>
-                <h3>Dodaj utwór</h3>
-                <p>Prześlij swoje materiały, wprowadź tytuł oraz opis, wstaw miniaturę , wyceń i kliknij DODAJ </p>
+        <div className={styles.addMaterialContainer}>
+            <div className={styles.headerContainer}>
+                <h3 className={styles.headerContainerTitle}>Dodaj utwór</h3>
+                <p className={styles.headerContainerInfo}>Prześlij swoje materiały, wprowadź tytuł oraz opis, wstaw miniaturę , wyceń i kliknij DODAJ </p>
+                <Line/>
             </div>
             <div>
-                <div>
-                    <button onClick={() => navigate(-1)} className="mainBtn">WRÓĆ</button>
-                </div>
-                <div>
-                    <form onSubmit={addMaterial}>
-                        <div>
-                            <div className="form-group">
-                                <label htmlFor="title">Tytuł</label>
+                <div className={styles.formContainer}>
+                    <form onSubmit={addMaterial} className={styles.form}>
+                    <div className={styles.actionContainer}>
+                        {/*<button onClick={() => navigate(-1)} className={`${styles.mainBtn} ${styles.backBtn}`}>Powrót</button>*/}
+                        {/*<button  type="submit" className={`${styles.mainBtn} ${styles.addBtn}`}>Dodaj</button>*/}
+                        <Button variant="outlined"  sx={{
+                            '&:hover': {
+                                textDecoration: 'none',
+                                backgroundColor: 'rgba(162,170,186,0.2)',
+                                border: '1px solid #a2aaba',
+                            },
+                            padding: '7px 20px 4px 20px',
+                            background: '#fff',
+                            color: '#a2aaba',
+                            border: '1px solid #a2aaba',
+                            fontFamily: 'Overpass, sans-serif',
+                            letterSpacing: '0.6px',
+                            fontSize: '16px',
+                            margin: '20px 10px',
+                            cursor: 'pointer',
+                        }} onClick={() => navigate(-1)}>
+                            POWRÓT
+                        </Button>
+
+                        <Button variant="outlined"
+                                type="submit"
+                            sx={{
+                                border: 'none',
+                                padding: '7px 20px 4px 20px',
+                                background: '#FE9549',
+                                color: '#fff',
+                                fontFamily: 'Overpass, sans-serif',
+                                letterSpacing: '0.6px',
+                                fontSize: '16px',
+                                margin: '20px 10px',
+                                cursor: 'pointer',
+                                '&:hover': {
+                                    textDecoration: 'none',
+                                    backgroundColor: 'rgb(254,149,73)',
+                                    border: '1px solid #FE9549',
+                                    opacity: '0.8',
+                                }
+                            }}>
+                            DODAJ
+                        </Button>
+
+                    </div>
+                        <div className={styles.col1}>
+                            <div className={styles.formGroup}>
+                                <label htmlFor="title" className={styles.labelForm}>Tytuł</label>
                                 <input type="text"
                                        id="title"
                                        name="title"
                                        onChange={handleChange}
                                         required/>
                             </div>
-                            <div className="form-group">
-                                <label htmlFor="description">Opis</label>
-                                <input type="text"
+                            <div className={styles.formGroup}>
+                                <label htmlFor="description" className={styles.labelForm}>Opis</label>
+                                <textarea cols={5}
+                                         rows={12}
                                        id="description"
                                        name="description"
                                        onChange={handleChange}
                                         required/>
                             </div>
                         </div>
-                        <div>
-                            <div className="form-group">
-                                <label htmlFor="price">Cena</label>
+                        <div className={styles.col2}>
+                            <div className={styles.formGroup}>
+                                <label htmlFor="price" className={styles.labelForm}>Cena</label>
                                 <input type="number"
                                        min="0.00"
                                        max="10000.00"
@@ -112,8 +180,8 @@ export default function AddMaterial() {
                                        onChange={handleChange}
                                        required/>
                             </div>
-                            <div className="form-group">
-                                <label htmlFor="category">Kategoria</label>
+                            <div className={styles.formGroup}>
+                                <label htmlFor="category" className={styles.labelForm}>Kategoria</label>
                                 <select id="category"
                                         name="category"
                                         onChange={handleChange}>
@@ -123,18 +191,37 @@ export default function AddMaterial() {
                                     <option value="songs">Piosenki</option>
                                     <option value="other">Inne</option>
                                 </select>
+
                             </div>
                         </div>
-                        <div>
-                            <input type="file"
-                                   id="file"
-                                   onChange={(e) => setFile(e.target.files[0])}
-                                   className="input-material"/>
+                        <div className={styles.col3}>
+                            <div className={styles.formGroup}>
+                                <label htmlFor="file" className={styles.labelForm}>Materiał</label>
+                                <input type="file"
+                                       id="file"
+                                       onChange={(e) => setFile(e.target.files[0])}
+                                       className={styles.inputMaterial}/>
+                            </div>
+                            {/*<div className={styles.formGroup}>*/}
+                            {/*    <label htmlFor="miniature" className={styles.labelForm}>Miniatura</label>*/}
+                            {/*    <input type="file"*/}
+                            {/*           id="miniature"*/}
+                            {/*           onChange={(e) => setMiniature(e.target.files[0])}*/}
+                            {/*           className={styles.inputMaterial}/>*/}
+                            {/*</div>*/}
                         </div>
-                    <button disabled={per !== null && per< 100} type="submit" className="mainBtn">DODAJ</button>
+
                     </form>
                 </div>
             </div>
+            <Stack spacing={2} sx={{ width: '100%' }}>
+                <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>
+                    <Alert onClose={handleClose} severity="success" sx={{ width: '100%' }}>
+                        Dodano utwór!
+                    </Alert>
+                </Snackbar>
+
+            </Stack>
         </div>
 
     )

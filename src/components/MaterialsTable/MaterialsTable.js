@@ -4,7 +4,7 @@ import {CategoriesContext} from "../../contexts/CategoriesContext";
 
 import MaterialsItem from "./MaterialsItem";
 
-import './materials-table.style.css'
+import styles from './materials-table.module.scss'
 
 export default function MaterialsTable() {
     const { savedMaterials } = useContext(CategoriesContext);
@@ -13,7 +13,7 @@ export default function MaterialsTable() {
 
     return (
         <Fragment>
-            <div className="materials-table">
+            <div className={styles.materialsTable}>
                 <tbody>
                 {savedMaterials.map((material) => (
                     <MaterialsItem key={material.id} material={material}/>

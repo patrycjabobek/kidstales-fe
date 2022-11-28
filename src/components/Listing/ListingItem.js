@@ -1,6 +1,6 @@
-import React from 'react'
+import React, {useEffect, useState} from 'react'
 
-import styles from './listing-item.module.css';
+import  styles from './listing-item.module.scss';
 import OvalButton from "../Buttons/OvalButton";
 
 import eyeIcon from '../../assets/icons/visibility_FILL0_wght400_GRAD0_opsz48.svg';
@@ -9,6 +9,14 @@ import userIcon from '../../assets/icons/account_circle_FILL1_wght400_GRAD200_op
 
 export default function ListingItem(props) {
     const {id, title, author, price, createdAt, imgUrl} = props.material;
+    const [decimalPrice, setDecimalPrice] = useState(price)
+
+    useEffect(() => {
+        setDecimalPrice((price) => {
+            return (Math.round(price * 100) / 100).toFixed(2);
+
+        })
+    }, [])
 
 
     return (
@@ -33,7 +41,15 @@ export default function ListingItem(props) {
                                                           fontWeight={'500'}
                                                           content={'FREE'}
                                 ></OvalButton>
-                                    : <>{price}</>
+                                    :  <OvalButton url={""}
+                                                   backgroundColor={'#3D27C5'}
+                                                   color={'#FFF'}
+                                                   borderRadius={'5px'}
+                                                   padding={'6px 15px'}
+                                                   fontSize={'0.875rem'}
+                                                   fontWeight={'500'}
+                                                   content={decimalPrice}
+                                    ></OvalButton>
                             }
 
                         </td>

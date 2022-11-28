@@ -1,11 +1,9 @@
-import React, {useContext, useState, useEffect} from 'react';
+import React, { useState, useEffect} from 'react';
 
-
-import {CategoriesContext} from "../../contexts/CategoriesContext";
 
 import ListingTable from "./ListingTable";
-import {StyledTitle} from "../../styledHelpers/Components";
-import {ListingContainer} from "../../styledHelpers/Components";
+import {StyledTitle, ListingContainer, StyledListingDescription} from "../../styledHelpers/Components";
+
 import {collection, getDocs, query, where} from "firebase/firestore";
 import {db} from "../../utils/firebase/firebase.utils";
 
@@ -35,7 +33,7 @@ export default function SongsListing() {
     return (
         <ListingContainer>
             <StyledTitle>Piosenki</StyledTitle>
-            <p>Wybierz piosenkę, które Ci sie podoba. Wszytkie utwory są dostępne dla Ciebie za darmo jednak nadal możesz wesprzeć swojego ulubionego twórcę.</p>
+            <StyledListingDescription>Wybierz piosenkę, które Ci sie podoba. Wszytkie utwory są dostępne dla Ciebie za darmo jednak nadal możesz wesprzeć swojego ulubionego twórcę.</StyledListingDescription>
             <ListingTable materials={songs} />
         </ListingContainer>
     )
