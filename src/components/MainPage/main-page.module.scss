@@ -1,0 +1,71 @@
+
+
+/*main page logged*/
+
+.mainPageContainerLogged {
+    /*display: inline-flex;*/
+    text-align: center;
+    margin-bottom: 50px;
+}
+
+
+.header {
+    font-family: 'Lilita One', cursive;
+    font-size: 4rem;
+    color: #0C2C80;
+    letter-spacing: 1.5px;
+    margin: 40px 0 25px 0;
+}
+
+.description {
+    color: #3D27C5;
+    width: 50%;
+    margin: 40px auto;
+}
+
+/*main page not logged*/
+
+.mainPageContainer {
+    margin-bottom: 50px;
+}
+.mainSection {
+    display: flex;
+}
+
+.column1,
+.column2 {
+    width: 50%;
+}
+
+.offerContainer {
+    background: #ffffff;
+    border-radius: 10px;
+    padding: 20px 50px ;
+    box-shadow: 0 5px 25px rgba(0, 0, 0, 0.2);
+}
+
+.offerContainer h3 {
+    font-size: 1.25rem;
+    color: #0C2C80;
+}
+.descriptionDefault {
+    color: #0C2C80;
+    padding-bottom: 20px;
+    font-weight: lighter;
+}
+
+.offerList {
+    display: flex;
+    margin-top: 15px;
+    justify-content: space-around;
+}
+
+.offerItem {
+    display: grid;
+    text-align: center;
+    justify-items: center;
+}
+.offerItem h4{
+    font-family: 'Overpass', serif;
+    color: #3D27C5;
+}

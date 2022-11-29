@@ -1,40 +1,44 @@
-import React, {  useState } from 'react'
+import React, {useContext, useState} from 'react'
 import {Wrapper} from "../../styledHelpers/Components";
 import {Link, useNavigate} from "react-router-dom";
-import {useAuth} from "../../contexts/AuthContext";
-import { onAuthStateChanged } from "firebase/auth";
-import {auth, createAuthUserWithEmailANdPassword, createUserDocumentFromAuth} from "../../utils/firebase/firebase.utils";
+import styles from './registration.module.scss';
+
+
+import {
+    createAuthUserWithEmailANdPassword,
+    createUserDocumentFromAuth, updateUserProfile,
+} from "../../utils/firebase/firebase.utils";
+import {UserContext} from "../../contexts/UserContext";
+import {updateProfile} from "firebase/auth";
+
 
 const defaultFormFields = {
     displayName: '',
     email: '',
     password: '',
     confirmPassword: '',
-    identity: ''
+    identity: '',
+    imgUrl: '',
+    bgUrl: '',
+    userDescription: ''
 }
 
 export default function Registration() {
     const [formFields, setFormFields] = useState(defaultFormFields);
-    const {displayName, email, password, confirmPassword, identity} = formFields;
+    const {displayName, email, password, confirmPassword, identity, imgUrl, bgUrl, userDescription} = formFields;
+    const [loading, setLoading] = useState(false);
+    const [error, setError] = useState('');
+    const {currentUser} = useContext(UserContext);
+
+    const navigate = useNavigate();
 
 
-    const resetFormFields = () => {
-        setFormFields(defaultFormFields);
-    }
     const handleChange = (ev) => {
         const { name,value } = ev.target;
         setFormFields({...formFields, [name]: value});
     }
 
-    const [user, setUser] = useState({});
-    const { signup } = useAuth();
-    const [loading, setLoading] = useState(false);
-    const [error, setError] = useState('');
-    const navigate = useNavigate();
 
-    onAuthStateChanged(auth, (currentUser) => {
-        setUser(currentUser);
-    });
 
     async function handleSubmit(e) {
         e.preventDefault();
@@ -47,12 +51,11 @@ export default function Registration() {
         try {
             setError('');
             setLoading(true);
-            const res = await createAuthUserWithEmailANdPassword(email, password);
+            const {user} = await createAuthUserWithEmailANdPassword(email, password);
+            await createUserDocumentFromAuth(user, {displayName, identity, imgUrl, bgUrl, userDescription});
+            await updateProfile(user, {displayName: displayName});
 
-            await createUserDocumentFromAuth(user, {displayName, identity});
-            console.log(res)
-            resetFormFields();
-            navigate('/login');
+            navigate('/');
         } catch(e) {
             if (e.code === "auth/email-already-in-use") {
                 setError("Ten email jest już zarejestrowany");
@@ -69,15 +72,15 @@ export default function Registration() {
     }
 
     return (
-        <Wrapper className={'registration-form'}>
+        <Wrapper className={styles.registrationForm}>
             <div >
                 <h3>Dołącz do nas za darmo!</h3>
-                {error && <div className="alert alert-danger">
+                {error && <div className={`${styles.alert} ${styles.alertDanger}`}>
                     <p>{error}</p>
                 </div>}
                 <form onSubmit={handleSubmit}>
                     {/*<div className={'personalData-field'}>*/}
-                        <div className="form-group">
+                        <div className={styles.formGroup}>
                             <label htmlFor="displayName">Imię i Nazwisko</label>
                             <input type="text"
                                    name="displayName"
@@ -86,7 +89,7 @@ export default function Registration() {
                                    value={displayName} required/>
                         </div>
                     {/*</div>*/}
-                    <div className="form-group">
+                    <div className={styles.formGroup}>
                         <label htmlFor="email">Email</label>
                         <input type="email"
                                id="email"
@@ -94,7 +97,7 @@ export default function Registration() {
                                onChange={handleChange}
                                value={email} required/>
                     </div>
-                    <div className="form-group" >
+                    <div className={styles.formGroup}>
                         <label htmlFor="password">Hasło</label>
                         <input type="password"
                                id="password"
@@ -102,7 +105,7 @@ export default function Registration() {
                                onChange={handleChange}
                                value={password} required/>
                     </div>
-                    <div className="form-group" >
+                    <div className={styles.formGroup}>
                         <label htmlFor="confirmPassword">Powtórz hasło</label>
                         <input type="password"
                                id="confirmPassword"
@@ -111,7 +114,7 @@ export default function Registration() {
                                value={confirmPassword} required/>
                     </div>
                     <h5>Jestem</h5>
-                    <div className="form-group radio-group" >
+                    <div className={`${styles.formGroup} ${styles.radioGroup}`} >
                         <input type="radio"
                                id="parent"
                                name="identity"
@@ -128,10 +131,10 @@ export default function Registration() {
                     </div>
                     <button disabled={loading}
                             type="submit"
-                            className={'submitBtn'}
+                            className={styles.submitBtn}
                     >Zarejestruj się</button>
                 </form>
-                <div className={'regulations'}>Rejestrując się, zgadzasz się na <Link to={'/regulamin'}>Regulamin</Link> oraz <Link to={'/privacy-policy'}>Politykę prywatności</Link></div>
+                <div className={styles.regulations}>Rejestrując się, zgadzasz się na <Link to={'/regulamin'}>Regulamin</Link> oraz <Link to={'/privacy-policy'}>Politykę prywatności</Link></div>
             </div>
             <div>
 

@@ -1,31 +1,34 @@
-import React from 'react'
-import styled from 'styled-components';
-import Logo from "../Logo/Logo";
-import NavBar from "../Navigation/NavBar";
-import ListingTable from "../Common/ListingTable";
-import {useParams} from 'react-router-dom';
+import React, {useEffect, useState} from 'react'
+import ListingTable from "./ListingTable";
 
-export default function Listing(props) {
-    const listingTitle = props.title;
-    const type = useParams();
+import {ListingContainer} from "../../styledHelpers/Components";
+import {collection, getDocs} from "firebase/firestore";
+import {db} from "../../utils/firebase/firebase.utils";
 
-    const renderDescription = () => {
-        if (listingTitle === "Bajki") {
-            return <p>Wybierz bajkę, które Ci sie podoba. Możesz skorzystać z darmowych utworów lub wesprzeć autora i wykupić nieograniczony dostęp do twórczości wybranego autora.</p>;
-        } else if (listingTitle === "Opowiadania") {
-            return <p>Wybierz piosenkę, które Ci sie podoba. Wszytkieutwory są dostępne dla Ciebie za darmo jednak nadal możesz wesprzeć swojego ulubionego wykonawcę.</p>;
-        } else if (listingTitle === "Piosenki") {
-            return  <p>Wybierz opowiadania, które Ci sie podoba. Możesz skorzystać z darmowych utworów lub wesprzeć autora i wykupić nieograniczony dostęp do twórczości wybranego autora.</p>;
-        }
-    }
+export default function Listing() {
+    const [data, setData] = useState([]);
+
+    useEffect(() => {
+        const fetchData = async () => {
+            let list = [];
+            try {
+                const querySnapshot = await getDocs(collection(db, "materials"));
+                querySnapshot.forEach((doc) => {
+                    list.push({ id: doc.id, ...doc.data() });
+                });
+                setData(list);
+            } catch (err) {
+                console.log(err);
+            }
+        };
+        fetchData();
+
+    }, []);
+
     return (
-        <div>
-            <div>
-                <h3>{listingTitle}</h3>
-                {renderDescription()}
-            </div>
-            <ListingTable></ListingTable>
-        </div>
+        <ListingContainer>
+            <ListingTable materials={data}></ListingTable>
+        </ListingContainer>
     )
 }
 

@@ -3,7 +3,7 @@ import {Wrapper} from "../../styledHelpers/Components";
 import {Link} from "react-router-dom";
 import styled from 'styled-components';
 import { Colors } from '../../styledHelpers/Colors';
-import './contact.css';
+import styles from './contact.module.scss';
 
 const StyledNumber = styled.span`
   color: ${Colors.linkBlue};
@@ -64,47 +64,47 @@ export default function Contact() {
                 <StyledForm>
 
                     <form onSubmit={handleSubmit}>
-                        <div className="form-group">
+                        <div className={styles.formGroup}>
                             <label htmlFor="name">Imię</label>
                             <input type="name" id="name" ref={nameRef} required/>
                         </div>
-                        <div className="form-group">
+                        <div className={styles.formGroup}>
                             <label htmlFor="email">Email</label>
                             <input type="email" id="email" ref={emailRef} required/>
                         </div>
-                        <div className="form-group" >
+                        <div className={styles.formGroup} >
                             <label htmlFor="message">W czym możemy Ci pomóc?</label>
-                            <textarea className={'message-area'} rows={'12'} cols={'15'} id="message"  ref={messageRef} required/>
+                            <textarea className={styles.messageArea} rows={'12'} cols={'15'} id="message"  ref={messageRef} required/>
                         </div>
 
                         <button disabled={loading}
                                 type="submit"
-                                className={'submitBtn'}
+                                className={styles.submitBtn}
                         >Wyślij</button>
                     </form>
-                    <div className={'regulations'}>Odpowiadamy w przeciągu <StyledNumber>48</StyledNumber> godzin roboczych</div>
+                    <div className={styles.regulations}>Odpowiadamy w przeciągu <StyledNumber>48</StyledNumber> godzin roboczych</div>
                 </StyledForm >
-                <div className={'contact-details'}>
-                    <div className={'contact-option'}>
-                        <div className={'icon'}>
+                <div className={styles.contactDetails}>
+                    <div className={styles.contactOption}>
+                        <div className={styles.contactIcon}>
                             <span className="material-icons">
                               mail_outline
                           </span>
                         </div>
-                        <div className={'contact-text'}>
+                        <div className={styles.contactText}>
                             <h3>Napisz do nas</h3>
                             <p>Nasz zespoł jest tutaj aby Ci pomóc</p>
                             <a href="mailto: kidstales@help.com ">kidstales@help.com</a>
                         </div>
                     </div>
-                    <div className={'contact-option'}>
-                        <div className={'icon'}>
+                    <div className={styles.contactOption}>
+                        <div className={styles.contactIcon}>
 
                             <span className="material-icons">
                                 phone_enabled
                             </span>
                         </div>
-                        <div className={'contact-text'}>
+                        <div className={styles.contactText}>
                             <h3>Kontakt telefoniczny</h3>
                             <p>Od pn - pt, w godz. 10:00 - 16:30</p>
                             <a href="tel: 122 333 444">+48 12 23 33 444</a>

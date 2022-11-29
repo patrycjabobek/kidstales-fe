@@ -1,0 +1,105 @@
+* {
+  box-sizing: border-box;
+}
+html {
+  background: #A4ADFE;
+  position: relative;
+  min-height: 100%;
+}
+body {
+  margin: 0 auto;
+  font-family: 'Overpass', sans-serif;
+  width: 1200px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+label {
+  color: #fff;
+}
+
+.not-selectable {
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+
+/* form global styles */
+
+.radioGroup {
+  display: flex;
+  justify-content: space-between;
+
+  & > label {
+    width: 45%;
+    color: #fff;
+    text-align: center;
+    background-color: #6684D3;
+    cursor: pointer;
+    margin: 10px 0;
+    border: 1px solid #3D27C5;
+    border-radius: 5px;
+  }
+}
+
+h5 {
+  margin: 20px 0 0 0;
+}
+
+input[type="radio"] {
+  display: none;
+}
+
+
+input[type="radio"]:checked + label {
+  background-color: #ffffff;
+  color: #6684D3;
+}
+
+input[type="radio"]:hover label {
+  background-color: #ffffff;
+  color: #6684D3;
+}
+
+
+.regulations {
+  font-size: 0.74rem;
+  padding: 0 10px;
+
+  & a {
+    color: #2DCDFF;
+  }
+}
+
+
+.alert {
+  color: #fff;
+  background: red;
+  margin: 0;
+  padding: 2px 10px;
+  border-radius: 10px;
+}
+
+.submitBtn {
+  background-color: #FE9549;
+  color: #fff;
+  border-radius: 5px;
+  padding: 10px 0;
+  margin: 16px 0;
+  width: 100%;
+  font-size: 0.85rem;
+  border: none;
+  cursor: pointer;
+  background-image: url("./assets/images/Arrow2.svg");
+  background-repeat: no-repeat;
+  background-position: right 24px center;
+}

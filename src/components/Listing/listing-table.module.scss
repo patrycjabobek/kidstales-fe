@@ -1,0 +1,38 @@
+.listingTableContainer {
+    position: relative;
+}
+
+.table {
+    border-collapse: collapse;
+    width: 100%;
+    position: relative;
+}
+
+.input {
+    position: absolute;
+    width: 300px;
+    font-size: 16px;
+    padding: 10px ;
+    background: #4753BC;
+    border: none;
+    border-radius: 3px;
+    color: #fff;
+    outline: none;
+    right: 0;
+    z-index: 10;
+}
+
+input::placeholder {
+    color: #fff;
+}
+
+input:focus {
+
+}
+
+.tableHeader {
+    border-bottom: 1px solid #A4ADFE;
+    /*text-align: left;*/
+    font-size: 18px;
+    height: 60px;
+}

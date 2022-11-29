@@ -1,19 +1,15 @@
-import React, { useRef, useState } from 'react'
+import React, {  useState, useContext } from 'react'
 import {Link, useNavigate} from 'react-router-dom';
-import { useAuth } from '../../contexts/AuthContext';
-import FacebookLogin from 'react-facebook-login';
-// import FacebookLogin from 'react-facebook-login/dist/facebook-login-render-props'
-import GoogleLogin from 'react-google-login';
-import './login.css'
+
 import { MainTitle, Wrapper} from '../../styledHelpers/Components'
 import OvalButton from "../Buttons/OvalButton";
-import {signInWithEmailAndPassword} from "firebase/auth";
-// import { auth } from "./firebase-config";
-import {auth,
+
+import styles from './login.module.scss';
+
+import {
     signInWithGooglePopup,
-    createUserDocumentFromAuth,
     signInAuthUserWithEmailAndPassword
-} from "../../utils/Firebase/firebase.utils";
+} from "../../utils/firebase/firebase.utils";
 
 const customGoogleStyle = {
     padding: '10px',
@@ -41,14 +37,14 @@ export default function Login() {
     const [loading, setLoading] = useState(false);
     const navigate = useNavigate();
 
+
     const resetFormFields = () => {
         setFormFields(defaultFormFields);
     };
 
     const logGoogleUser = async () => {
         const {user} = await signInWithGooglePopup();
-        const userDocRef = await createUserDocumentFromAuth(user);
-        console.log(userDocRef)
+        navigate("/")
     }
 
     async function handleSubmit(e) {
@@ -57,10 +53,9 @@ export default function Login() {
         try {
             setError('')
             setLoading(true)
-            const res = await signInAuthUserWithEmailAndPassword(email, password);
-            console.log(res);
+            const {user} = await signInAuthUserWithEmailAndPassword(email, password);
             resetFormFields();
-            // navigate('/dashboard')
+            navigate('/')
         } catch (er){
             if (er.code === "auth/wrong-password"){
                 setError('Błędne hasło')
@@ -73,6 +68,8 @@ export default function Login() {
         setLoading(false)
     }
 
+
+
     const handleChange = (ev) => {
         const { name, value } = ev.target;
 
@@ -81,18 +78,16 @@ export default function Login() {
 
     return (
         <Wrapper>
-            <div className={'section1 login-info'}>
+            <div className={`${styles.section1} ${styles.loginInfo}`}>
                 <h3>Dołacz do nas za darmo!</h3>
             </div>
-            <div className={'section2'}>
+            <div className={styles.section2} >
                 <MainTitle>Stwórz swój profil</MainTitle>
-                {error && <div className="alert alert-danger">
-                    <p>{error}</p>
-                </div>}
-                <div className={'signing-section'}>
-                    <div className={'thirdParty'}>
-                        <button  onClick={logGoogleUser}>
-                            Sign In with Google
+
+                <div className={styles.signingSection}>
+                    <div className={styles.thirdParty}>
+                        <button  onClick={logGoogleUser} className={styles.googleBtn}>
+                            Zaloguj się przez Google
                         </button>
                         <OvalButton url={'/register'}
                                     content={'Zarejestruj sie przez adres e-mail'}
@@ -104,15 +99,15 @@ export default function Login() {
                                     fontSize={'0.85rem'}
                                     fontWeight={'normal'}/>
                     </div>
-                    <div className={'hr-label'}>
-                        <span className={'label'}>lub</span>
+                    <div className={styles.hrLabel}>
+                        <span className={styles.label}>lub</span>
                     </div>
-                    <div className={'loginForm'}>
-                        {error && <div className="alert alert-danger">
+                    <div className={styles.loginForm}>
+                        {error && <div className={`${styles.alert}  ${styles.alertDanger}`}>
                             <p>{error}</p>
                         </div>}
                         <form onSubmit={handleSubmit}>
-                            <div className="form-group">
+                            <div className={styles.formGroup}>
                                 <label htmlFor="email">Email</label>
                                 <input type="email"
                                        id="email"
@@ -120,7 +115,7 @@ export default function Login() {
                                        onChange={handleChange}
                                        value={email} required/>
                             </div>
-                            <div className="form-group" >
+                            <div className={styles.formGroup} >
                                 <label htmlFor="password">Hasło</label>
                                 <input type="password"
                                        id="password"
@@ -131,15 +126,15 @@ export default function Login() {
 
                             <button disabled={loading}
                                     type="submit"
-                                    className={'submitBtn'}
+                                    className={styles.submitBtn}
                                         >Zaloguj się</button>
                         </form>
-                        <div className={'other-options'}>
-                            <div className={'rememberMe-field'}>
+                        <div className={styles.otherOptions}>
+                            <div className={styles.rememberMeField}>
                                 <input type="checkbox" defaultChecked={true}/>
                                 Zapamiętaj mnie
                             </div>
-                            <Link to={'/password-reset'} className={'forgotPassword-field'} href="">Zapomniałem hasła</Link>
+                            <Link to={'/password-reset'} className={styles.forgotPasswordField} href="">Zapomniałem hasła</Link>
                         </div>
                     </div>
                 </div>

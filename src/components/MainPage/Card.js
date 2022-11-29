@@ -1,5 +1,5 @@
 import React from 'react'
-import './card.css';
+import styles from './card.module.scss';
 import arrow from '../../assets/images/arrow.svg';
 import {Link} from 'react-router-dom';
 
@@ -7,9 +7,11 @@ export default function Card(props) {
 
 
     return (
-        <div className={'card'} style={{boxShadow: props.boxShadow}}>
+        <div className={styles.card}
+             style={{boxShadow: props.boxShadow}}
+        >
             <Link to={props.url}>
-                <div className={'image-box'}
+                <div className={styles.imageBox}
                      style={{
                          backgroundColor: props.bgColor,
                      }}>
@@ -19,7 +21,7 @@ export default function Card(props) {
                     <h2>{props.title}</h2>
                 </div>
                 <div>
-                    <img className={'arrowImg'} src={arrow} alt=""/>
+                    <img className={styles.arrowImg} src={arrow} alt=""/>
                 </div>
             </Link>
         </div>

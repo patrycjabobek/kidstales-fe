@@ -1,0 +1,67 @@
+.listingItem {
+    height: 70px;
+}
+
+
+.listingItemDetails {
+}
+
+.image {
+    width: 10%;
+    text-align: center;
+}
+
+.image img {
+    width: 55px;
+}
+
+.title {
+    padding-top: 15px;
+    font-weight: bold;
+}
+
+.more  {
+    display: flex;
+    padding-bottom: 5px;
+}
+
+.more h3 {
+    font-size: 14px;
+    font-weight: 400;
+    width: 25%;
+    flex: 1;
+}
+
+.more h3:first-child {
+    flex: 1.5;
+}
+
+.views {
+    display: flex;
+    position: relative;
+    text-align: center;
+    width: 45%;
+
+}
+
+.views img {
+    position: absolute;
+    left: -25px;
+}
+
+
+.button {
+    text-align: right;
+}
+
+.price,
+.mark {
+    font-size: 18px;
+    font-weight: 600;
+    text-align: center;
+}
+
+.icon {
+    width: 20px;
+    height: 20px;
+}

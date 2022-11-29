@@ -1,0 +1,19 @@
+.userProfileContainer {
+    background: #fff;
+    padding: 20px 40px;
+    border-radius: 10px 10px 0 0;
+}
+
+.savedMaterialsContainer > h3{
+    font-family: 'Lilita One', cursive;
+    color: #0C2C80;
+}
+
+div.table div {display: none}
+div.table div:target {
+    display: block
+}
+
+/*.saved-materials-container p:target a{*/
+/*    color: #A4ADFE;*/
+/*}*/

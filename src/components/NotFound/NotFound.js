@@ -1,10 +1,10 @@
-import React, {useRef, useState} from 'react'
+import React  from 'react'
 import styled from 'styled-components';
-import {LogoComponent, MainTitle, Wrapper} from "../../styledHelpers/Components";
+import { Wrapper} from "../../styledHelpers/Components";
 import {Link} from "react-router-dom";
 import { Colors } from '../../styledHelpers/Colors';
 import { fontSize } from '../../styledHelpers/FontSizes';
-import './notfound.css'
+import styles from './notfound.module.scss'
 
 
 const BigError = styled.h1`
@@ -43,13 +43,13 @@ const StyledLink = styled(Link)`
 export default function NotFound() {
 
     return (
-          <div className={'error-page'}>
+          <div className={styles.errorPage}>
               <Wrapper>
                   <BigError>40</BigError>
                   <KickedError>4</KickedError>
               </Wrapper>
               <StyledMainTitle>Nie ma takiej strony!</StyledMainTitle>
-              <div className={'link'}>
+              <div className={styles.link}>
                 <StyledLink to={'/'}>Wróć do strony głównej</StyledLink>
               </div>
           </div>

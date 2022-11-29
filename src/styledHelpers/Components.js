@@ -28,7 +28,7 @@ export const MainTitle = styled.h1`
 export const StyledTitle = styled.h1`
     font-family: 'Lilita One', cursive;
     color: ${Colors.catalinaBlue};
-    font-size: ${fontSize[18]};
+    font-size: ${fontSize[36]};
     margin: 0
 `;
 
@@ -49,4 +49,15 @@ export const Dot = styled.span`
   width: 55px;
   border-radius: 50%;
   display: inline-block;
+`;
+
+export const  ListingContainer = styled.div`
+  background: white;
+  padding: 20px 40px;
+  border-radius: 10px 10px 0 0;
+`;
+
+
+export const StyledListingDescription = styled.p`
+  color: #3D27C5;
 `;

@@ -1,0 +1,31 @@
+.modal {
+  width: 65%;
+  padding: 16px 63px;
+  margin: 24px auto;
+  text-align: center;
+  box-shadow: 0 0 13px 4px #a4adfe47;
+  border-radius: 5px;
+
+  .header {
+    color: #0C2C80;
+    font-family: "Lilita One", cursive;
+
+  }
+
+  .rating {
+    background: rgba(164, 173, 254, 0.25);
+    display: flex;
+    justify-content: space-evenly;
+    height: 40px;
+    border-radius: 20px;
+    padding: 10px;
+    & h3 {
+      font-size: 14px;
+      margin: 0;
+      align-self: center;
+    }
+  }
+
+
+}
+

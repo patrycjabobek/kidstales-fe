@@ -1,0 +1,41 @@
+
+.card {
+    width: 300px;
+    height: 370px;
+    background: #fff;
+    border-radius: 20px;
+    transition: 0.3s;
+}
+
+.card:hover {
+    box-shadow: 0 5px 50px rgb(46, 11, 121) !important;
+    transition: 0.3s;
+}
+
+.imageBox {
+    position: relative;
+    width: 85%;
+    height: 65%;
+    margin: 0 auto;
+    border-radius: 0 0 20px 20px;
+}
+
+.imageBox > img {
+    width: 60%;
+    height: 60%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+h2 {
+    font-size: 1.4rem;
+    font-weight: normal;
+    color: #0C2C80;
+}
+
+.arrowImg {
+    height: 40px;
+    width: 80px;
+}

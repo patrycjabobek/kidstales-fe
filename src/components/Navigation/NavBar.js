@@ -1,11 +1,15 @@
-import React from 'react'
+import React, {useContext, useEffect, useState} from 'react'
 import styled from 'styled-components';
 import { StyledLink } from '../../styledHelpers/Components';
 import { fontSize } from '../../styledHelpers/FontSizes';
 import { Colors } from '../../styledHelpers/Colors';
 import OvalButton from "../Buttons/OvalButton";
-import './navBar.css';
-import {Link} from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
+import styles from './navbar.module.scss';
+
+import {UserContext} from "../../contexts/UserContext";
+import {db, signOutUser} from '../../utils/firebase/firebase.utils';
+import {collection, doc, getDoc, getDocs, query, where} from "firebase/firestore";
 
 const Nav = styled.ul`
   list-style: none;
@@ -20,7 +24,11 @@ const NavItem = styled.li`
   font-weight: 550;
   color: ${Colors.catalinaBlue};
   
-`
+  .user {
+    color: #fff;
+  }
+  
+`;
 
 const Dropdown = styled.div`
   position: relative;
@@ -30,45 +38,50 @@ const Dropdown = styled.div`
 const DropdownContent = styled.div`
   display: none;
   position: absolute;
+  padding: 10px;
   background-color: #fff;
-  min-width: 160px;
+  min-width: 180px;
   border-radius: 0 0 10px 10px;
   z-index: 1;
 `;
-export default function NavBar(props) {
+export default function NavBar({ className }) {
+    const {currentUser} = useContext(UserContext);
+    const [identity, setIdentity] = useState("");
+    const [data, setData] = useState({});
+    console.log('currentUser ', currentUser)
+    const navigate = useNavigate();
 
-    if (props.isLoggedIn && props.isParent) {
+    async function handleSignOut() {
+        await signOutUser();
+        navigate('/login');
+    }
+
+    useEffect(() => {
+        const getUserData = async () => {
+
+            try {
+                const usersRef = doc(db, "users", currentUser.uid);
+                const docSnap = await getDoc(usersRef);
+
+                const data = docSnap.exists() ? docSnap.data() : null
+                setData(data);
+                setIdentity(data.identity);
+
+            } catch (e) {
+                console.log(e)
+            }
+        }
+        getUserData();
+    }, [currentUser])
+
+
+    if (currentUser && identity === "parent") {
         return (
             <Nav>
-                <NavItem><StyledLink to="/parent-zone">Dla dziecka</StyledLink></NavItem>
+                <NavItem className={"user"}>{data.displayName}</NavItem>
                 <NavItem><StyledLink to="/contact">Kontakt</StyledLink></NavItem>
                 <NavItem>
-                    <Dropdown className={'dropdown'}>
-                        <OvalButton url={'/profile'}
-                                      backgroundColor={'#E0F1FA'}
-                                      color={'#0C2C80'}
-                                      borderRadius={'20px'}
-                                      padding={'6px 16px'}
-                                      fontSize={'1.13rem'}
-                                      fontWeight={'600'}
-                                      content={'Mój profil'}
-                                      className={'dropdownBtn'}
-                        ></OvalButton>
-                        <DropdownContent className={'dropdown-content'}>
-                            <Link to="/profile">Profil</Link>
-                            <Link to="/settings">Ustawienia</Link>
-                            <Link to="/logout">Wyloguj się</Link>
-                        </DropdownContent>
-                    </Dropdown>
-                </NavItem>
-            </Nav>)
-    } else if (props.isLoggedIn && !props.isParent) {
-        return (
-            <Nav>
-                <NavItem><StyledLink to="/author-zone">Dla autora</StyledLink></NavItem>
-                <NavItem><StyledLink to="/contact">Kontakt</StyledLink></NavItem>
-                <NavItem>
-                    <Dropdown className={'dropdown'}>
+                    <Dropdown className={styles.dropdown}>
                         <OvalButton url={'/profile'}
                                     backgroundColor={'#E0F1FA'}
                                     color={'#0C2C80'}
@@ -79,10 +92,35 @@ export default function NavBar(props) {
                                     content={'Mój profil'}
                                     className={'dropdownBtn'}
                         ></OvalButton>
-                        <DropdownContent className={'dropdown-content'}>
+                        <DropdownContent className={styles.dropdownContent}>
                             <Link to="/profile">Profil</Link>
                             <Link to="/settings">Ustawienia</Link>
-                            <Link to="/logout">Wyloguj się</Link>
+                            <span onClick={handleSignOut}>Wyloguj się</span>
+                        </DropdownContent>
+                    </Dropdown>
+                </NavItem>
+            </Nav>)
+    } else if (currentUser && identity === "author") {
+        return (
+            <Nav>
+                <NavItem className={"user"}>{data.displayName}</NavItem>
+                <NavItem><StyledLink to="/contact">Kontakt</StyledLink></NavItem>
+                <NavItem>
+                    <Dropdown className={styles.dropdown}>
+                        <OvalButton url={'/author'}
+                                    backgroundColor={'#E0F1FA'}
+                                    color={'#0C2C80'}
+                                    borderRadius={'20px'}
+                                    padding={'6px 16px'}
+                                    fontSize={'1.13rem'}
+                                    fontWeight={'600'}
+                                    content={'Mój profil'}
+                                    className={'dropdownBtn'}
+                        ></OvalButton>
+                        <DropdownContent className={styles.dropdownContent}>
+                            <Link to="/author">Profil</Link>
+                            <Link to="/settings">Ustawienia</Link>
+                            <span onClick={handleSignOut}>Wyloguj się</span>
                         </DropdownContent>
                     </Dropdown>
                 </NavItem>
@@ -94,7 +132,7 @@ export default function NavBar(props) {
             <NavItem><StyledLink to="/parent-zone">Dla dziecka</StyledLink></NavItem>
             <NavItem><StyledLink to="/author-zone">Dla autora</StyledLink></NavItem>
             <NavItem><StyledLink to="/contact">Kontakt</StyledLink></NavItem>
-            <NavItem> <OvalButton url={'/register'}
+            <NavItem> <OvalButton url={'/login'}
                                   backgroundColor={'#E0F1FA'}
                                   color={'#0C2C80'}
                                   borderRadius={'20px'}

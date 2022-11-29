@@ -1,0 +1,12 @@
+.materialItem {
+    border: 2px solid #A4ADFE;
+    border-radius: 5px;
+    padding: 10px 30px;
+    display: flex;
+    justify-content: space-evenly;
+
+    & h3, h4 {
+        margin-right: 20px;
+    }
+}
+

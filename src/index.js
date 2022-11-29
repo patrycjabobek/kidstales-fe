@@ -1,11 +1,22 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
 
+import App from './App';
+import {UserProvider } from './contexts/UserContext';
+import { CategoriesProvider } from './contexts/CategoriesContext';
+import {FavoritesAuthorsProvider} from "./contexts/FavoritesAuthorsContext";
+
+
+import './index.scss';
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <UserProvider>
+        <CategoriesProvider>
+            <FavoritesAuthorsProvider>
+                <App />
+            </FavoritesAuthorsProvider>
+        </CategoriesProvider>
+    </UserProvider>
   </React.StrictMode>,
   document.getElementById('root')
 );
