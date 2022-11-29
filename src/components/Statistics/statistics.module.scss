@@ -1,0 +1,65 @@
+.statisticsContainer {
+  background-color: #ffff;
+
+  .headerContainer {
+    display: grid;
+
+    &Title {
+      font-family: 'Lilita One', cursive;
+      font-size: 36px;
+      color: #0C2C80;
+      width: max-content;
+      margin: 0 auto
+    }
+
+  }
+
+ .summary {
+   display: flex;
+   justify-content: space-around;
+ }
+  .modalBox {
+    box-shadow: rgba(164, 173, 254, 0.4) 0 0 3px;
+    padding: 8px 20px;
+    display: flex;
+    justify-content: space-around;
+    border-radius: 10px;
+    margin: 10px;
+
+    img {
+      width: 70px;
+      height: 70px;
+    }
+
+    .info {
+      display: block;
+
+      &:first-child {
+        color: #5961A5;
+      }
+    }
+  }
+
+  .settlementContainer {
+
+    .settlementHeader {
+      color: #0C2C80;
+
+      h3 {
+        font-size: 24px;
+      }
+    }
+  }
+
+  .settlementTableContainer {
+
+    .settlementTable {
+
+      font-size: 18px;
+
+      td {
+        color: #888787;
+      }
+    }
+  }
+}
