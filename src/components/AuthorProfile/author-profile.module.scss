@@ -79,6 +79,14 @@
     width: 200px;
     height: 200px;
     transform: translate(-50%, -10%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+img {
+        width: 200px;
 }
 
 .img {
@@ -149,7 +157,7 @@
     transform: translate(-50%, -50%);
 }
 
-.profile-edit-header {
+.profileEditHeader {
     display: flex;
     align-items: center;
 
@@ -205,10 +213,27 @@
 
 .formEditor {
     display: block;
+    
+    &:first-child {
+        height: 200px;
+    }
+        
+        h3 {
+            top: 40%;
+            margin-top: 200px;
+            margin-left: 200px;
+            padding: 8px 12px;
+            background: #E0F1FA;
+            color: #9bc0db;
+        }
 }
 
 .imageArea {
  }
+
+.uploadButton {
+    display: none;
+}
 
 .backgroundImg {
     display: none;
@@ -226,12 +251,16 @@
 .labelAvatarFileUpload {
     position: absolute;
     left: 0;
-    top: 18%;
+    top: 16%;
     padding: 20px;
     width: 100%;
     height: 100px;
     background: #E0F1FA;
     cursor: pointer;
+}
+
+.labelFileUpload {
+    height: 150px;
 }
 
 .labelAvatarFileUpload{
@@ -249,6 +278,7 @@
     width: 160px;
     height: 160px;
     border-radius: 50%;
+    top: 25%
 }
 
 .avatar {
@@ -287,10 +317,29 @@
     border: none;
     resize: none;
     background: #E0F1FA;
+    margin-top: 25px;
 }
 
 .flag {
     border: none;
     background-color: transparent;
     cursor: pointer;
+}
+
+.reportComponent {
+    
+    .reportHeader {
+       background: rgba(164, 173, 254, 0.25);
+       padding: 10px 15px;    
+    }
+    
+    label::first-child {
+        font-size: 12px;
+        padding: 15px
+    }
+    
+    label {
+        color: #000;
+    }
+    
 }

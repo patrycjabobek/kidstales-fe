@@ -94,21 +94,6 @@
     background: transparent;
 }
 
-.form-editor {
-    display: flex;
-    padding: 30px 0;
-}
-
-
-.r1, .r3 {
-    flex: 1;
-    padding: 0 20px;
-}
-
-.r2 {
-    width: 20%;
-    padding: 0 20px;
-}
 
 .description-area {
     border-radius: 5px;
@@ -169,4 +154,199 @@
     right: 0;
     bottom: 0;
     left: 0;
+}
+
+.materialEditHeader {
+    display: flex;
+    align-items: center;
+    padding: 10px 20px;
+
+    & button:first-child {
+        border: none;
+        background: none;
+        font-family: 'Varela Round', sans-serif;
+        color: #0C2C80;
+        cursor: pointer;
+        
+        svg {
+            font-size: 40px;
+        }
+    }
+
+    & button:last-child {
+        border: none;
+        background: #4753BC;
+        // padding: 8px 15px;
+        // border-radius: 22px;
+        font-size: 16px;
+        font-family: 'Overpass', sans-serif;
+        color: #fff;
+        cursor: pointer;
+    }
+
+    &  h3 {
+        margin: 0;
+        width: 90%;
+        font-family: 'Overpass', sans-serif;
+        color: #0C2C80;
+        font-size: 20px;
+        padding-left: 15px;
+    }
+
+    & p {
+        color: #5961A5;
+        font-size: 12px;
+    }
+}
+
+.line {
+    height: 5px;
+    background: #E0F1FA;
+}
+
+
+.formGroup {
+    display: grid;
+    margin-bottom: 20px;
+    & label {
+        color: #3D27C5;
+        font-size: 0.85rem;
+        padding: 8px 0;
+    }
+
+    & input {
+        border-radius: 5px;
+        border: 1px solid #3D27C5;
+        padding: 8px 0;
+        background-color: #E0F1FA;
+
+        &:active {
+            border: 2px solid #3D27C5;
+        }
+    }
+}
+
+.formEditor {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    padding: 15px 10px;
+
+    .col1 {
+        width: 35%;
+
+        .formGroup {
+            width: 85%;
+            margin-bottom: 20px;
+            display: grid;
+
+            & label {
+                color: #3D27C5;
+                font-size: 0.85rem;
+                padding: 8px 0;
+            }
+
+            & input {
+                border-radius: 5px;
+                border: 1px solid #3D27C5;
+                padding: 8px 0;
+                background-color: #E0F1FA;
+
+                &:active {
+                    border: 2px solid #3D27C5;
+                }
+            }
+
+            textarea {
+                resize: none;
+                border-radius: 5px;
+                border: 1px solid #3D27C5;
+                padding: 8px 0;
+                background-color: #E0F1FA;
+            }
+
+            select::-ms-expand {
+                display: none;
+            }
+
+            select {
+                display: inline-block;
+                box-sizing: border-box;
+                padding: 0.5em 2em 0.5em 0.5em;
+                border: 1px solid #eee;
+                font: inherit;
+                line-height: inherit;
+                -webkit-appearance: none;
+                -moz-appearance: none;
+                -ms-appearance: none;
+                appearance: none;
+                outline: none;
+                background-repeat: no-repeat;
+                background-image: linear-gradient(45deg, transparent 50%, currentColor 50%), linear-gradient(135deg, currentColor 50%, transparent 50%);
+                background-position: right 15px top 1em, right 10px top 1em;
+                background-size: 5px 5px, 5px 5px;
+            }
+        }
+    }
+      
+    .col2 {
+        width: 20%;
+
+        .formGroup {
+            width: 65%;
+            margin-bottom: 20px;
+
+        }
+    }
+
+    .col3 {
+        width: 45%;
+    }
+}
+
+.deleteActions {
+    background: #E0F1FA;
+    padding: 25px;
+    
+    
+    p {
+        color: #93B3C2;
+    }
+    
+    button {
+        margin: 0 20px;
+    }
+}
+
+.center{
+    text-align: center;
+    
+    div:first-child {
+        display: flex;
+        justify-content: center;
+    }
+    
+    svg {
+        font-size: 40px;
+        margin: 10px ;
+    }
+    
+    h3 {
+        margin: auto 10px;
+    }
+}
+
+.close {
+    padding: 10px 10px 0 10px;
+    
+    svg {
+        cursor: pointer;
+        transform: rotate(-90deg);
+        transition: 0.3s;
+        
+        &:hover {
+            transform: rotate(90deg);
+            transition: 0.3s;
+        }
+    }
 }
