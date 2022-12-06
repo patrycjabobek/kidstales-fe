@@ -19,13 +19,17 @@
 .actionBox {
     align-self: center;
     padding-left: 10px;
-    width: 15%;
+    width: 10%;
     & button {
         margin: 0 5px ;
         border: none;
         background: none;
         cursor: pointer;
     }
+}
+
+.icon {
+    color: #C4C4C4;
 }
 
 
@@ -211,13 +215,13 @@
     & label {
         color: #3D27C5;
         font-size: 0.85rem;
-        padding: 8px 0;
+        padding: 8px ;
     }
 
     & input {
         border-radius: 5px;
-        border: 1px solid #3D27C5;
-        padding: 8px 0;
+        // border: 1px solid #3D27C5;
+        padding: 8px ;
         background-color: #E0F1FA;
 
         &:active {
@@ -243,25 +247,25 @@
             & label {
                 color: #3D27C5;
                 font-size: 0.85rem;
-                padding: 8px 0;
+                padding: 8px ;
             }
 
             & input {
                 border-radius: 5px;
-                border: 1px solid #3D27C5;
-                padding: 8px 0;
+                // border: 1px solid #3D27C5;
+                padding: 8px;
                 background-color: #E0F1FA;
 
                 &:active {
                     border: 2px solid #3D27C5;
                 }
             }
-
+            
             textarea {
                 resize: none;
                 border-radius: 5px;
-                border: 1px solid #3D27C5;
-                padding: 8px 0;
+                // border: 1px solid #3D27C5;
+                padding: 8px ;
                 background-color: #E0F1FA;
             }
 
@@ -296,6 +300,14 @@
             width: 65%;
             margin-bottom: 20px;
 
+        }
+        
+        & input {
+            border: 2px solid #3D27C5;
+            
+            &:focus-visible {
+                border: 2px solid #3D27C5;
+            }
         }
     }
 

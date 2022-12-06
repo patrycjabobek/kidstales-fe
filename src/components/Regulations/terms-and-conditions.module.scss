@@ -1,0 +1,21 @@
+.termsContainer {
+    background: #fff;
+    border-radius: 10px 10px 0 0;
+    padding: 40px 20px;
+    
+    .headerContainer {
+        display: grid;
+
+        &Title {
+            font-family: 'Lilita One', cursive;
+            font-size: 36px;
+            color: #0C2C80;
+            width: max-content;
+            margin: 0 auto
+        }
+    }
+    .text {
+        white-space: pre-line;
+    }
+    
+}

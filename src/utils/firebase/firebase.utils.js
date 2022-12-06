@@ -1,42 +1,42 @@
-import { initializeApp } from 'firebase/app'
+import { initializeApp } from "firebase/app";
 import {
-    getAuth,
-    signInWithPopup,
-    GoogleAuthProvider,
-    createUserWithEmailAndPassword,
-    signInWithEmailAndPassword,
-    signOut,
-    onAuthStateChanged,
-    sendPasswordResetEmail,
-    sendEmailVerification,
-    updateEmail,
-    updatePassword,
-    updateProfile,
-    updateCurrentUser,
-    updatePhoneNumber,
-    deleteUser
+  getAuth,
+  signInWithPopup,
+  GoogleAuthProvider,
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+  signOut,
+  onAuthStateChanged,
+  sendPasswordResetEmail,
+  sendEmailVerification,
+  updateEmail,
+  updatePassword,
+  updateProfile,
+  updateCurrentUser,
+  updatePhoneNumber,
+  deleteUser,
 } from "firebase/auth";
-import {getFirestore,
-    doc,
-    getDoc, //access the data
-    setDoc,
-    collection,
-    writeBatch,
-    query,
-    getDocs
-} from 'firebase/firestore';
 import {
-    getDownloadURL,
-    getStorage
-} from 'firebase/storage';
+  getFirestore,
+  doc,
+  getDoc, //access the data
+  setDoc,
+  collection,
+  writeBatch,
+  query,
+  where,
+  getDocs,
+  QuerySnapshot,
+} from "firebase/firestore";
+import { getDownloadURL, getStorage } from "firebase/storage";
 
 const firebaseConfig = {
-    apiKey: "AIzaSyCPLNjYR7f4Ow3dWDS1TT_sucBONmHNMeg",
-    authDomain: "kidstales-user-reg-auth-9c638.firebaseapp.com",
-    projectId: "kidstales-user-reg-auth-9c638",
-    storageBucket: "kidstales-user-reg-auth-9c638.appspot.com",
-    messagingSenderId: "606734776124",
-    appId: "1:606734776124:web:9cbcfbf7ab5b503a2c9039"
+  apiKey: "AIzaSyCPLNjYR7f4Ow3dWDS1TT_sucBONmHNMeg",
+  authDomain: "kidstales-user-reg-auth-9c638.firebaseapp.com",
+  projectId: "kidstales-user-reg-auth-9c638",
+  storageBucket: "kidstales-user-reg-auth-9c638.appspot.com",
+  messagingSenderId: "606734776124",
+  appId: "1:606734776124:web:9cbcfbf7ab5b503a2c9039",
 };
 
 const app = initializeApp(firebaseConfig);
@@ -45,90 +45,105 @@ export const storage = getStorage(app);
 
 const provider = new GoogleAuthProvider();
 
- provider.setCustomParameters({
-     propmt: "select_account"
- });
-
+provider.setCustomParameters({
+  propmt: "select_account",
+});
 
 export const auth = getAuth(app);
-export const signInWithGooglePopup = () => signInWithPopup(auth, provider)
+export const signInWithGooglePopup = () => signInWithPopup(auth, provider);
 
 export const db = getFirestore();
 
-export const addCollectionAndDocuments = async ( collectionKey, objectsToAdd) => {
-    const collectionRef = collection(db, collectionKey);
-    const batch = writeBatch(db);
+export const addCollectionAndDocuments = async (
+  collectionKey,
+  objectsToAdd
+) => {
+  const collectionRef = collection(db, collectionKey);
+  const batch = writeBatch(db);
 
-    objectsToAdd.forEach((object) => {
-        const docRef = doc(collectionRef, object.title.toLowerCase());
-        batch.set(docRef, object);
-    });
+  objectsToAdd.forEach((object) => {
+    const docRef = doc(collectionRef, object.title.toLowerCase());
+    batch.set(docRef, object);
+  });
 
-    await batch.commit();
-    console.log('done')
-}
+  await batch.commit();
+  console.log("done");
+};
 
-export const getCategoriesAndDocuments = async () => {
-    const collectionRef = collection(db, 'categories');
-    const q = query(collectionRef);
+export const getMaterialsAndDocuments = async () => {
+  const collectionRef = collection(db, "materials");
+  const q = query(collectionRef);
 
-    const querySnapshot = await getDocs(q);
-    const categoryMap = querySnapshot.docs.reduce((acc, docSnapshot) => {
-        const {title, materials } = docSnapshot.data();
-        acc[title.toLowerCase()] = materials;
-        return acc;
-    }, {})
+  const querySnapshot = await getDocs(q);
+  const materialMap = querySnapshot.docs.reduce((acc, docSnapshot) => {
+    return docSnapshot.data();
+  }, {});
 
-    return categoryMap;
-}
+  return materialMap;
+};
+
+export const getMaterialsByCat = async (category) => {
+  const collectionRef = collection(db, "materials");
+  const q = query(collectionRef, where("category", "==", category));
+
+  const querySnapshot = await getDocs(q);
+  const categoryMap = querySnapshot.docs.reduce((acc, docSnapshot) => {
+    return docSnapshot.data();
+    // console.log("docsnapshot", docSnapshot.data());
+
+    // acc[title.toLowerCase()] = materials;
+    // return docSnapshot.data();
+  });
+
+  return categoryMap;
+};
+
 export const getUsersAndDocuments = async () => {
-    const collectionRef = collection(db, 'users');
-    const q = query(collectionRef);
+  const collectionRef = collection(db, "users");
+  const q = query(collectionRef);
 
-    const querySnapshot = await getDocs(q);
-    const userMap = querySnapshot.forEach((doc) => {
-        console.log(doc.id, " => ", doc.data());
-    });
+  const querySnapshot = await getDocs(q);
+  const userMap = querySnapshot.forEach((doc) => {
+    console.log(doc.id, " => ", doc.data());
+  });
 
-    return userMap;
-}
+  return userMap;
+};
 
 export const createUserDocumentFromAuth = async (
-    userAuth,
-    moreInfo = {
-        identity: '',
-        imgUrl: '',
-        bgUrl: '',
-        userDescription: '',
-    }
+  userAuth,
+  moreInfo = {
+    identity: "",
+    imgUrl: "",
+    bgUrl: "",
+    userDescription: "",
+  }
 ) => {
-    if (!userAuth) return;
+  if (!userAuth) return;
 
-    const userDocRef = doc(db, 'users', userAuth.uid); // see if there's an existing document reference
+  const userDocRef = doc(db, "users", userAuth.uid); // see if there's an existing document reference
 
-    const userSnapshot = await getDoc(userDocRef);
+  const userSnapshot = await getDoc(userDocRef);
 
-    if (!userSnapshot.exists()){
-        const {displayName, email, uid} = userAuth;
-        const createdAt = new Date();
+  if (!userSnapshot.exists()) {
+    const { displayName, email, uid } = userAuth;
+    const createdAt = new Date();
 
-
-        try {
-            await setDoc(userDocRef, {
-                uid,
-                displayName,
-                email,
-                createdAt,
-                ...moreInfo
-            });
-        }catch (e) {
-            console.log('error creating user ', e.message)
-        }
+    try {
+      await setDoc(userDocRef, {
+        uid,
+        displayName,
+        email,
+        createdAt,
+        ...moreInfo,
+      });
+    } catch (e) {
+      console.log("error creating user ", e.message);
     }
+  }
 
-    return userDocRef;
-
-}
+  return userDocRef;
+};
 
 // export const getUserData = async (uid) => {
 //         const usersRef = doc(db, "users", uid);
@@ -142,53 +157,60 @@ export const createUserDocumentFromAuth = async (
 // }
 
 export const createAuthUserWithEmailANdPassword = async (email, password) => {
-    if (!email || !password) return;
+  if (!email || !password) return;
 
-    return await  createUserWithEmailAndPassword(auth, email, password)
-}
-
+  return await createUserWithEmailAndPassword(auth, email, password);
+};
 
 export const signInAuthUserWithEmailAndPassword = async (email, password) => {
-    if (!email || !password) return;
+  if (!email || !password) return;
 
-    return await signInWithEmailAndPassword(auth, email, password);
-}
+  return await signInWithEmailAndPassword(auth, email, password);
+};
 
 export const signOutUser = async () => signOut(auth);
 
-export const onAuthStateChangedListener = (callback) => onAuthStateChanged(auth, callback);
+export const onAuthStateChangedListener = (callback) =>
+  onAuthStateChanged(auth, callback);
 
 export const sendUserPasswordResetEmail = async (email) => {
-    if (!email) return;
+  if (!email) return;
 
-    return await sendPasswordResetEmail(auth, email);
-}
+  return await sendPasswordResetEmail(auth, email);
+};
 
 export const updateUserProfile = async (user, displayName) => {
-    if (!user) return;
+  if (!user) return;
 
-    return user.updateProfile({ displayName });
-}
+  return user.updateProfile({ displayName });
+};
 
 export const updateUserEmail = async (user, email) => {
-    if (!email || !user) return;
+  if (!email || !user) return;
 
-    return updateEmail(user, email);
-}
+  return updateEmail(user, email);
+};
+
+// export const updateUserPhoneNumber = async (user, phone) => {
+//   if (!user) return;
+
+//   return updatePhoneNumber(user, phone);
+// };
 
 export const deleteUserAccount = async (user) => {
-    if (!user) return;
+  if (!user) return;
 
-    return deleteUser(user).then(() => {
-        console.log("User successfully deleted!")
-    }).catch((e) => {
-        console.log(e);
+  return deleteUser(user)
+    .then(() => {
+      console.log("User successfully deleted!");
     })
-}
+    .catch((e) => {
+      console.log(e);
+    });
+};
 
 export const updateUserPassword = async (user, password) => {
-    if (!user || !password) return;
+  if (!user || !password) return;
 
-    return updatePassword(user, password);
-}
-
+  return updatePassword(user, password);
+};

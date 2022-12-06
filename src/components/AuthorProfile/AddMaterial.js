@@ -95,7 +95,7 @@ export default function AddMaterial() {
         <h3 className={styles.headerContainerTitle}>Dodaj utwór</h3>
         <p className={styles.headerContainerInfo}>
           Prześlij swoje materiały, wprowadź tytuł oraz opis, wstaw miniaturę ,
-          wyceń i kliknij DODAJ{" "}
+          wyceń i kliknij DODAJ
         </p>
         <Line />
       </div>
@@ -127,7 +127,6 @@ export default function AddMaterial() {
               >
                 POWRÓT
               </Button>
-
               <Button
                 variant="outlined"
                 type="submit"

@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from "react";
 import Popup from "reactjs-popup";
-import Paper from "@mui/material/Paper";
 // import {
-//     Chart,
-//     LineSeries,
-//     SplineSeries,
-//     Legend,
-//     Title,
-// } from '@devexpress/dx-react-chart-material-ui';
+//   Chart,
+//   LineSeries,
+//   SplineSeries,
+//   Legend,
+//   Title,
+// } from "@devexpress/dx-react-chart-material-ui";
+import Paper from "@mui/material/Paper";
 import Button from "@mui/material/Button";
 import VisibilityIcon from "@mui/icons-material/Visibility";
 import PeopleAltIcon from "@mui/icons-material/PeopleAlt";
@@ -32,6 +32,7 @@ export default function Statistics() {
   const [data, setData] = useState([]);
   useEffect(() => {
     setData(generateData(2.5, 12, 0.5));
+    console.log(data);
   }, []);
 
   const usersN = 23;
@@ -77,6 +78,14 @@ export default function Statistics() {
             <option value="songs">Piosenki</option>
             <option value="other">Inne</option>
           </select>
+          <Paper>
+            {/* <Chart data={data}>
+              <LineSeries valueField="lineValue" argumentField="argument" />
+              <SplineSeries valueField="splineValue" argumentField="argument" />
+            </Chart>
+            <Legend />
+            <Title text="Title" /> */}
+          </Paper>
         </div>
         <div className={styles.settlementContainer}>
           <div className={styles.settlementHeader}>

@@ -1,0 +1,47 @@
+.audioPlayerContainer {
+    display: flex;
+    // max-height: 65px;
+    padding: 10px 0;
+    
+    .audioControls {
+        padding: 0 10px;
+        width: 8%;
+    }
+    
+    
+    .waveAudio {
+        position: relative;
+        width:80%;
+        
+        .audioItemDetails {
+        position: absolute;
+        margin: 10px 0 ;
+        
+        .author {
+            font-size:14px;
+            margin: 0;
+        }
+        
+        h3 {
+            margin: 0;
+        }
+        }
+    }
+    
+    .price, {
+        width: 7%;
+        
+        button {
+            width: 100%;
+        }
+    }
+    .button {
+        padding: 0 15px;
+        width: 14%;
+    }
+    
+    .price,
+    .button {
+        align-self: center;
+    }
+}

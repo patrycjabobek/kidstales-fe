@@ -1,13 +1,12 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import styles from "./author-material-item.module.scss";
-import OvalButton from "../Buttons/OvalButton";
+
 import CloseIcon from "@mui/icons-material/Close";
 import DeleteIcon from "@mui/icons-material/Delete";
+import EditIcon from "@mui/icons-material/Edit";
 import Button from "@mui/material/Button";
 
-import eyeIcon from "../../assets/icons/visibility_FILL0_wght400_GRAD0_opsz48.svg";
-import userIcon from "../../assets/icons/account_circle_FILL1_wght400_GRAD200_opsz48.svg";
 import Popup from "reactjs-popup";
 import { doc, deleteDoc } from "firebase/firestore";
 import { db } from "../../utils/firebase/firebase.utils";
@@ -38,7 +37,6 @@ const StyledPopupEditor = styled(Popup)`
     box-shadow: rgba(0, 0, 0, 0.16) 0 0 3px;
   }
 `;
-
 const StyledPopupDelete = styled(Popup)`
   &-overlay {
     background: rgba(0, 0, 0, 0.5);
@@ -80,10 +78,6 @@ export default function AuthorMaterialItem(props) {
     }
   };
 
-  useEffect(() => {
-    console.log("material", category);
-  }, []);
-
   const handleDrop = function (e) {
     e.preventDefault();
     e.stopPropagation();
@@ -120,7 +114,11 @@ export default function AuthorMaterialItem(props) {
       </td>
       <td className={styles.actionBox}>
         <StyledPopupEditor
-          trigger={<button>Edytuj</button>}
+          trigger={
+            <button>
+              <EditIcon className={styles.icon} />
+            </button>
+          }
           className="editBtn"
         >
           {(close) => (
@@ -180,9 +178,7 @@ export default function AuthorMaterialItem(props) {
                         <option value="stories">Opowiadania</option>
                         <option value="cartoons">Bajki</option>
                         <option value="songs">Piosenki</option>
-                        <option value="other" selected>
-                          Inne
-                        </option>
+                        <option value="other">Inne</option>
                       </select>
                     </div>
                   </div>
@@ -220,7 +216,13 @@ export default function AuthorMaterialItem(props) {
             </div>
           )}
         </StyledPopupEditor>
-        <StyledPopupDelete trigger={<button>Usuń</button>}>
+        <StyledPopupDelete
+          trigger={
+            <button>
+              <DeleteIcon className={styles.icon} />
+            </button>
+          }
+        >
           {(close) => (
             <div>
               <div className={styles.close}>

@@ -1,20 +1,11 @@
-import React, { useContext, useEffect, useState, Fragment } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import styled from "styled-components";
 import Popup from "reactjs-popup";
 import styles from "./author-profile.module.scss";
 import "reactjs-popup/dist/index.css";
 import { UserContext } from "../../contexts/UserContext";
 import { db } from "../../utils/firebase/firebase.utils";
-import {
-  collection,
-  doc,
-  getDoc,
-  getDocs,
-  query,
-  updateDoc,
-  where,
-} from "firebase/firestore";
-import ListingItem from "../Listing/ListingItem";
+import { doc, getDoc, updateDoc } from "firebase/firestore";
 import AuthorMaterialsList from "./AuthorMaterialsList";
 import camera from "../../assets/icons/photo_camera_FILL0_wght400_GRAD0_opsz48.svg";
 import userIcon from "../../assets/icons/account_circle_FILL1_wght400_GRAD200_opsz48.svg";
@@ -155,9 +146,9 @@ export default function AuthorProfile() {
           </button>
           <div className={styles.imgBox}>
             {avatar != null ? (
-              <img src={avatar} />
+              <img src={avatar} alt="" />
             ) : (
-              <img src={userIcon} className={styles.img} />
+              <img src={userIcon} className={styles.img} alt="" />
             )}
             {/*<img src="" alt="profile image" className="img"/>*/}
           </div>
